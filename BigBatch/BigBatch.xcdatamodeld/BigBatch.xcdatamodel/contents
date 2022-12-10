@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CocktailEntity" representedClassName="CocktailEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="aBV1" attributeType="String"/>
+        <attribute name="aBV2" attributeType="String"/>
+        <attribute name="aBV3" attributeType="String"/>
+        <attribute name="aBV4" attributeType="String"/>
+        <attribute name="aBV5" attributeType="String"/>
+        <attribute name="aBV6" attributeType="String"/>
+        <attribute name="aBV7" attributeType="String"/>
+        <attribute name="aBV8" attributeType="String"/>
+        <attribute name="cocktailName" attributeType="String"/>
+        <attribute name="ingredient1Amount" attributeType="String"/>
+        <attribute name="ingredient1Name" attributeType="String"/>
+        <attribute name="ingredient2Amount" attributeType="String"/>
+        <attribute name="ingredient2Name" attributeType="String"/>
+        <attribute name="ingredient3Amount" attributeType="String"/>
+        <attribute name="ingredient3Name" attributeType="String"/>
+        <attribute name="ingredient4Amount" attributeType="String"/>
+        <attribute name="ingredient4Name" attributeType="String"/>
+        <attribute name="ingredient5Amount" attributeType="String"/>
+        <attribute name="ingredient5Name" attributeType="String"/>
+        <attribute name="ingredient6Amount" attributeType="String"/>
+        <attribute name="ingredient6Name" attributeType="String"/>
+        <attribute name="ingredient7Amount" attributeType="String"/>
+        <attribute name="ingredient7Name" attributeType="String"/>
+        <attribute name="ingredient8Amount" attributeType="String"/>
+        <attribute name="ingredient8Name" attributeType="String"/>
+    </entity>
+</model>
