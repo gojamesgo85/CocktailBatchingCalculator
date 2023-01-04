@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OzMlPerIngredientTF: UITextField {
+class CocktailIngredientAmountTF: UITextField {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

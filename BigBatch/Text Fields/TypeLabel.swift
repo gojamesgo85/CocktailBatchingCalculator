@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BatchSizeType: UILabel {
+class TypeLabel: UILabel {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +26,6 @@ class BatchSizeType: UILabel {
         backgroundColor = .white
         font = UIFont.preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
-        layer.borderWidth = 1
         adjustsFontSizeToFitWidth = true
         layer.masksToBounds = true
     }
