@@ -21,7 +21,6 @@ class BatchButton: UIButton {
     
     private func configure() {
         layer.cornerRadius = 10
-//        layer.borderWidth = 1
         backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 1.0)
         setTitle("Batch", for: .normal)
         setTitleColor(.systemGray6, for: .normal)

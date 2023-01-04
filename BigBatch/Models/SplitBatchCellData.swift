@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct SplitBatchCellData {
+    
+    var ingredientName = ""
+    var totalVolumeInBatchamount = 0
+    var singleCocktailIngredientAmount = 0.0
+    
+    
+    
+}

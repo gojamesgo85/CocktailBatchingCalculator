@@ -12,7 +12,7 @@ struct CocktailIngredientsForCell {
     var name = ""
     var amount = ""
     var abv = ""
-    var percentage = ""
+    var dilutionPercentageTextField = ""
     var cellSwitch = 0
     
     

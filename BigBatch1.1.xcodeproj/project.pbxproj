@@ -7,51 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2F14E4294984700020BA1A /* CocktailSpecsIngredientsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F14E3294984700020BA1A /* CocktailSpecsIngredientsArray.swift */; };
+		1A2F14E6294A66450020BA1A /* NotesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F14E5294A66450020BA1A /* NotesVC.swift */; };
+		1A2F14E8294A8B910020BA1A /* BatchedVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F14E7294A8B910020BA1A /* BatchedVC1.swift */; };
+		1A2F14EA294AB6F20020BA1A /* ChooseContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F14E9294AB6F20020BA1A /* ChooseContainerVC.swift */; };
+		1A2F14EC294B10CF0020BA1A /* SplitBatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F14EB294B10CF0020BA1A /* SplitBatchVC.swift */; };
+		1A2F14F1294BB19A0020BA1A /* TotalBatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F14F0294BB19A0020BA1A /* TotalBatchTableViewCell.swift */; };
+		1A2F14F3294D17870020BA1A /* BatchedCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F14F2294D17870020BA1A /* BatchedCellData.swift */; };
 		1A4D6311292D787700955459 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6310292D787700955459 /* AppDelegate.swift */; };
 		1A4D6313292D787700955459 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6312292D787700955459 /* SceneDelegate.swift */; };
-		1A4D6315292D787700955459 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6314292D787700955459 /* ViewController.swift */; };
 		1A4D631A292D787800955459 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4D6319292D787800955459 /* Assets.xcassets */; };
 		1A4D631D292D787800955459 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4D631B292D787800955459 /* LaunchScreen.storyboard */; };
-		1A4D6325292D7D5500955459 /* OzMlPerIngredientTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6324292D7D5500955459 /* OzMlPerIngredientTF.swift */; };
+		1A4D6325292D7D5500955459 /* CocktailIngredientAmountTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6324292D7D5500955459 /* CocktailIngredientAmountTF.swift */; };
 		1A4D6327292D81DA00955459 /* SavedBatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6326292D81DA00955459 /* SavedBatches.swift */; };
 		1A4D632B292D84F700955459 /* BatchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D632A292D84F600955459 /* BatchButton.swift */; };
-		1A4D632D292D93AE00955459 /* CocktailIngredientTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D632C292D93AE00955459 /* CocktailIngredientTF.swift */; };
-		1A4D632F292DB60000955459 /* BatchedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D632E292DB60000955459 /* BatchedVC.swift */; };
-		1A4D6332292DF69E00955459 /* BatchSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6331292DF69E00955459 /* BatchSizeType.swift */; };
+		1A4D632D292D93AE00955459 /* CocktailIngredientNameTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D632C292D93AE00955459 /* CocktailIngredientNameTF.swift */; };
+		1A4D6332292DF69E00955459 /* TypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D6331292DF69E00955459 /* TypeLabel.swift */; };
 		1A4D633A2934460800955459 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D63392934460800955459 /* Cocktail.swift */; };
 		1A4D633C29354F9000955459 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D633B29354F9000955459 /* Constants.swift */; };
+		1A4FD2E3294673680075B2CB /* cocktailIngredientsForCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FD2E2294673680075B2CB /* cocktailIngredientsForCell.swift */; };
+		1A4FD2E529472A330075B2CB /* CocktailSpecsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FD2E429472A330075B2CB /* CocktailSpecsTableViewCell.swift */; };
+		1A4FD2E82947D7C00075B2CB /* DilutionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FD2E72947D7C00075B2CB /* DilutionTableViewCell.swift */; };
 		1A9D7C062940375F0051BAC9 /* BigBatch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D7C042940375F0051BAC9 /* BigBatch.xcdatamodeld */; };
 		1A9D7C0829403A120051BAC9 /* StorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D7C0729403A120051BAC9 /* StorageProvider.swift */; };
-		1A9D7C0A29404AA80051BAC9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D7C0929404AA80051BAC9 /* Extensions.swift */; };
+		1A9D7C0A29404AA80051BAC9 /* StorageProviderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D7C0929404AA80051BAC9 /* StorageProviderExtensions.swift */; };
 		1AAB692E2941E1F400779DC3 /* keyboardDoneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB692D2941E1F400779DC3 /* keyboardDoneExtension.swift */; };
-		1AAB69502945260B00779DC3 /* CAGradientLayer+ListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB694F2945260B00779DC3 /* CAGradientLayer+ListStyle.swift */; };
+		1AAB69502945260B00779DC3 /* CAGradientLayer+ViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB694F2945260B00779DC3 /* CAGradientLayer+ViewStyle.swift */; };
 		1AAB69522945273400779DC3 /* ViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB69512945273400779DC3 /* ViewStyles.swift */; };
 		1AAB6954294528F800779DC3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB6953294528F800779DC3 /* UIColorExtension.swift */; };
+		1AAB69562945428300779DC3 /* CocktailSpecsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB69552945428300779DC3 /* CocktailSpecsVC.swift */; };
+		1AAB69582945C6B100779DC3 /* AddIngredientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB69572945C6B100779DC3 /* AddIngredientVC.swift */; };
+		1AE8B12D295244A600D50137 /* SplitBatchCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8B12C295244A600D50137 /* SplitBatchCellData.swift */; };
+		1AE8B12F2952556700D50137 /* SplitBatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8B12E2952556700D50137 /* SplitBatchTableViewCell.swift */; };
+		1AE8B131295E726700D50137 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8B130295E726700D50137 /* CustomAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A2F14E3294984700020BA1A /* CocktailSpecsIngredientsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailSpecsIngredientsArray.swift; sourceTree = "<group>"; };
+		1A2F14E5294A66450020BA1A /* NotesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesVC.swift; sourceTree = "<group>"; };
+		1A2F14E7294A8B910020BA1A /* BatchedVC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchedVC1.swift; sourceTree = "<group>"; };
+		1A2F14E9294AB6F20020BA1A /* ChooseContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseContainerVC.swift; sourceTree = "<group>"; };
+		1A2F14EB294B10CF0020BA1A /* SplitBatchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBatchVC.swift; sourceTree = "<group>"; };
+		1A2F14F0294BB19A0020BA1A /* TotalBatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBatchTableViewCell.swift; sourceTree = "<group>"; };
+		1A2F14F2294D17870020BA1A /* BatchedCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchedCellData.swift; sourceTree = "<group>"; };
 		1A4D630D292D787700955459 /* BigBatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigBatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4D6310292D787700955459 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A4D6312292D787700955459 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1A4D6314292D787700955459 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1A4D6319292D787800955459 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A4D631C292D787800955459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4D631E292D787800955459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A4D6324292D7D5500955459 /* OzMlPerIngredientTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OzMlPerIngredientTF.swift; sourceTree = "<group>"; };
+		1A4D6324292D7D5500955459 /* CocktailIngredientAmountTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailIngredientAmountTF.swift; sourceTree = "<group>"; };
 		1A4D6326292D81DA00955459 /* SavedBatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBatches.swift; sourceTree = "<group>"; };
 		1A4D632A292D84F600955459 /* BatchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchButton.swift; sourceTree = "<group>"; };
-		1A4D632C292D93AE00955459 /* CocktailIngredientTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailIngredientTF.swift; sourceTree = "<group>"; };
-		1A4D632E292DB60000955459 /* BatchedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchedVC.swift; sourceTree = "<group>"; };
-		1A4D6331292DF69E00955459 /* BatchSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSizeType.swift; sourceTree = "<group>"; };
+		1A4D632C292D93AE00955459 /* CocktailIngredientNameTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailIngredientNameTF.swift; sourceTree = "<group>"; };
+		1A4D6331292DF69E00955459 /* TypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeLabel.swift; sourceTree = "<group>"; };
 		1A4D63392934460800955459 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
 		1A4D633B29354F9000955459 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1A4FD2E2294673680075B2CB /* cocktailIngredientsForCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cocktailIngredientsForCell.swift; sourceTree = "<group>"; };
+		1A4FD2E429472A330075B2CB /* CocktailSpecsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailSpecsTableViewCell.swift; sourceTree = "<group>"; };
+		1A4FD2E72947D7C00075B2CB /* DilutionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilutionTableViewCell.swift; sourceTree = "<group>"; };
 		1A9D7C052940375F0051BAC9 /* BigBatch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BigBatch.xcdatamodel; sourceTree = "<group>"; };
 		1A9D7C0729403A120051BAC9 /* StorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProvider.swift; sourceTree = "<group>"; };
-		1A9D7C0929404AA80051BAC9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1A9D7C0929404AA80051BAC9 /* StorageProviderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProviderExtensions.swift; sourceTree = "<group>"; };
 		1AAB692D2941E1F400779DC3 /* keyboardDoneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboardDoneExtension.swift; sourceTree = "<group>"; };
-		1AAB694F2945260B00779DC3 /* CAGradientLayer+ListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+ListStyle.swift"; sourceTree = "<group>"; };
+		1AAB694F2945260B00779DC3 /* CAGradientLayer+ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+ViewStyle.swift"; sourceTree = "<group>"; };
 		1AAB69512945273400779DC3 /* ViewStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyles.swift; sourceTree = "<group>"; };
 		1AAB6953294528F800779DC3 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		1AAB69552945428300779DC3 /* CocktailSpecsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailSpecsVC.swift; sourceTree = "<group>"; };
+		1AAB69572945C6B100779DC3 /* AddIngredientVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientVC.swift; sourceTree = "<group>"; };
+		1AE8B12C295244A600D50137 /* SplitBatchCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBatchCellData.swift; sourceTree = "<group>"; };
+		1AE8B12E2952556700D50137 /* SplitBatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBatchTableViewCell.swift; sourceTree = "<group>"; };
+		1AE8B130295E726700D50137 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2F14EF294BAEFD0020BA1A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1AAB692D2941E1F400779DC3 /* keyboardDoneExtension.swift */,
+				1A9D7C0929404AA80051BAC9 /* StorageProviderExtensions.swift */,
+				1AAB6953294528F800779DC3 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1A4D6304292D787700955459 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +122,8 @@
 			children = (
 				1A4D6312292D787700955459 /* SceneDelegate.swift */,
 				1A4D6310292D787700955459 /* AppDelegate.swift */,
+				1A2F14EF294BAEFD0020BA1A /* Extensions */,
+				1A4FD2E62947D3A30075B2CB /* CustomTableViewCells */,
 				1A4D633D29354F9500955459 /* Utilities */,
 				1A4D6336292EA5DE00955459 /* Models */,
 				1A4D6330292DF09300955459 /* Buttons */,
@@ -102,8 +140,11 @@
 		1A4D6328292D832B00955459 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1A4D6314292D787700955459 /* ViewController.swift */,
+				1AAB69552945428300779DC3 /* CocktailSpecsVC.swift */,
 				1A4D6326292D81DA00955459 /* SavedBatches.swift */,
+				1A2F14E7294A8B910020BA1A /* BatchedVC1.swift */,
+				1A2F14E9294AB6F20020BA1A /* ChooseContainerVC.swift */,
+				1A2F14EB294B10CF0020BA1A /* SplitBatchVC.swift */,
 				1A4D6333292E217700955459 /* SubViews */,
 			);
 			path = Views;
@@ -112,9 +153,9 @@
 		1A4D6329292D834E00955459 /* Text Fields */ = {
 			isa = PBXGroup;
 			children = (
-				1A4D6324292D7D5500955459 /* OzMlPerIngredientTF.swift */,
-				1A4D632C292D93AE00955459 /* CocktailIngredientTF.swift */,
-				1A4D6331292DF69E00955459 /* BatchSizeType.swift */,
+				1A4D6324292D7D5500955459 /* CocktailIngredientAmountTF.swift */,
+				1A4D632C292D93AE00955459 /* CocktailIngredientNameTF.swift */,
+				1A4D6331292DF69E00955459 /* TypeLabel.swift */,
 			);
 			path = "Text Fields";
 			sourceTree = "<group>";
@@ -130,7 +171,9 @@
 		1A4D6333292E217700955459 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				1A4D632E292DB60000955459 /* BatchedVC.swift */,
+				1AAB69572945C6B100779DC3 /* AddIngredientVC.swift */,
+				1A2F14E5294A66450020BA1A /* NotesVC.swift */,
+				1AE8B130295E726700D50137 /* CustomAlert.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -139,9 +182,12 @@
 			isa = PBXGroup;
 			children = (
 				1A4D63392934460800955459 /* Cocktail.swift */,
-				1AAB694F2945260B00779DC3 /* CAGradientLayer+ListStyle.swift */,
+				1A4FD2E2294673680075B2CB /* cocktailIngredientsForCell.swift */,
+				1AAB694F2945260B00779DC3 /* CAGradientLayer+ViewStyle.swift */,
 				1AAB69512945273400779DC3 /* ViewStyles.swift */,
-				1AAB6953294528F800779DC3 /* UIColorExtension.swift */,
+				1A2F14E3294984700020BA1A /* CocktailSpecsIngredientsArray.swift */,
+				1A2F14F2294D17870020BA1A /* BatchedCellData.swift */,
+				1AE8B12C295244A600D50137 /* SplitBatchCellData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -151,10 +197,19 @@
 			children = (
 				1A4D633B29354F9000955459 /* Constants.swift */,
 				1A9D7C0729403A120051BAC9 /* StorageProvider.swift */,
-				1AAB692D2941E1F400779DC3 /* keyboardDoneExtension.swift */,
-				1A9D7C0929404AA80051BAC9 /* Extensions.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1A4FD2E62947D3A30075B2CB /* CustomTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				1A4FD2E429472A330075B2CB /* CocktailSpecsTableViewCell.swift */,
+				1A4FD2E72947D7C00075B2CB /* DilutionTableViewCell.swift */,
+				1A2F14F0294BB19A0020BA1A /* TotalBatchTableViewCell.swift */,
+				1AE8B12E2952556700D50137 /* SplitBatchTableViewCell.swift */,
+			);
+			path = CustomTableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,21 +282,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A2F14EA294AB6F20020BA1A /* ChooseContainerVC.swift in Sources */,
 				1A9D7C0829403A120051BAC9 /* StorageProvider.swift in Sources */,
-				1AAB69502945260B00779DC3 /* CAGradientLayer+ListStyle.swift in Sources */,
+				1A2F14E4294984700020BA1A /* CocktailSpecsIngredientsArray.swift in Sources */,
+				1AAB69502945260B00779DC3 /* CAGradientLayer+ViewStyle.swift in Sources */,
 				1AAB69522945273400779DC3 /* ViewStyles.swift in Sources */,
+				1A4FD2E82947D7C00075B2CB /* DilutionTableViewCell.swift in Sources */,
+				1A2F14F1294BB19A0020BA1A /* TotalBatchTableViewCell.swift in Sources */,
+				1AE8B12D295244A600D50137 /* SplitBatchCellData.swift in Sources */,
 				1A9D7C062940375F0051BAC9 /* BigBatch.xcdatamodeld in Sources */,
-				1A4D6325292D7D5500955459 /* OzMlPerIngredientTF.swift in Sources */,
+				1AE8B12F2952556700D50137 /* SplitBatchTableViewCell.swift in Sources */,
+				1A2F14E8294A8B910020BA1A /* BatchedVC1.swift in Sources */,
+				1A2F14EC294B10CF0020BA1A /* SplitBatchVC.swift in Sources */,
+				1A2F14E6294A66450020BA1A /* NotesVC.swift in Sources */,
+				1A4D6325292D7D5500955459 /* CocktailIngredientAmountTF.swift in Sources */,
 				1AAB6954294528F800779DC3 /* UIColorExtension.swift in Sources */,
-				1A4D6315292D787700955459 /* ViewController.swift in Sources */,
-				1A4D6332292DF69E00955459 /* BatchSizeType.swift in Sources */,
+				1A2F14F3294D17870020BA1A /* BatchedCellData.swift in Sources */,
+				1A4D6332292DF69E00955459 /* TypeLabel.swift in Sources */,
 				1A4D6311292D787700955459 /* AppDelegate.swift in Sources */,
-				1A4D632D292D93AE00955459 /* CocktailIngredientTF.swift in Sources */,
+				1A4D632D292D93AE00955459 /* CocktailIngredientNameTF.swift in Sources */,
+				1A4FD2E3294673680075B2CB /* cocktailIngredientsForCell.swift in Sources */,
 				1A4D633C29354F9000955459 /* Constants.swift in Sources */,
 				1A4D6327292D81DA00955459 /* SavedBatches.swift in Sources */,
-				1A9D7C0A29404AA80051BAC9 /* Extensions.swift in Sources */,
+				1A9D7C0A29404AA80051BAC9 /* StorageProviderExtensions.swift in Sources */,
 				1A4D632B292D84F700955459 /* BatchButton.swift in Sources */,
-				1A4D632F292DB60000955459 /* BatchedVC.swift in Sources */,
+				1AE8B131295E726700D50137 /* CustomAlert.swift in Sources */,
+				1AAB69582945C6B100779DC3 /* AddIngredientVC.swift in Sources */,
+				1AAB69562945428300779DC3 /* CocktailSpecsVC.swift in Sources */,
+				1A4FD2E529472A330075B2CB /* CocktailSpecsTableViewCell.swift in Sources */,
 				1A4D6313292D787700955459 /* SceneDelegate.swift in Sources */,
 				1AAB692E2941E1F400779DC3 /* keyboardDoneExtension.swift in Sources */,
 				1A4D633A2934460800955459 /* Cocktail.swift in Sources */,
@@ -381,28 +449,35 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WK23NQPJ9R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BigBatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cocktail Batching Calculator";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				"INFOPLIST_KEY_UIMainStoryboardFile[sdk=*]" = "";
-				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gojamesgo85.gmail.BigBatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -411,27 +486,34 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WK23NQPJ9R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BigBatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cocktail Batching Calculator";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gojamesgo85.gmail.BigBatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

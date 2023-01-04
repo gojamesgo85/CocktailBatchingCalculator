@@ -7,9 +7,25 @@
 
 import UIKit
 
-class CocktailSpecsTableViewCell: UITableViewCell {
+protocol CocktailSpecsTableViewCellDelegate {
+    func didEditCellAmountTextField(indexPath: Int, changedAmountText: String)
+    func didEditCellAbvTextField(indexPath: Int, changedAbvText: String)
+}
 
-    static let identifier = "CocktailSpecsCell"
+class CocktailSpecsTableViewCell: UITableViewCell, UITextFieldDelegate {
+
+   
+    static let coktailIngredientIdentifier = "Cocktail Specs Cell"
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let changedText = ozTextField.text else { return }
+        guard let changedAbvText = abvTextField.text else { return }
+        delegate?.didEditCellAmountTextField(indexPath: ozTextField.tag, changedAmountText: changedText)
+        delegate?.didEditCellAbvTextField(indexPath: abvTextField.tag, changedAbvText: changedAbvText)
+        
+    }
+    
+    var delegate: CocktailSpecsTableViewCellDelegate?
     
     let ozTextField: UITextField = {
         let textField = UITextField()
@@ -20,35 +36,18 @@ class CocktailSpecsTableViewCell: UITableViewCell {
         
     }()
     
-    let ozOfLable: UILabel = {
-        let ozOfLable = UILabel()
-        ozOfLable.textColor = .white
-        ozOfLable.backgroundColor = .clear
-        ozOfLable.text = "oz."
-        ozOfLable.font = .systemFont(ofSize: 16, weight: .semibold)
-        ozOfLable.textAlignment = .center
-        return ozOfLable
-    }()
-    
-    let specsIngredientTextField: UITextField = {
-        let textField = UITextField()
+
+    let specsIngredientLabel: UILabel = {
+        let textField = TypeLabel()
         textField.tintColor = .blue
         textField.isEnabled = true
-        textField.textAlignment = .center
-        
+        textField.textAlignment = .left
+        textField.minimumScaleFactor = 12
         return textField
         
     }()
     
-    let atLable: UILabel = {
-        let atLable = UILabel()
-        atLable.textColor = .white
-        atLable.backgroundColor = .clear
-        atLable.font = .systemFont(ofSize: 16, weight: .semibold)
-        atLable.text = "at"
-        atLable.textAlignment = .center
-        return atLable
-    }()
+
     
     let abvTextField: UITextField = {
         let textField = UITextField()
@@ -71,20 +70,25 @@ class CocktailSpecsTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = UIColor(red: 0.5, green: 0.3, blue: 0.8, alpha: 0.1)
         contentView.addSubview(ozTextField)
-        contentView.addSubview(ozOfLable)
-        contentView.addSubview(specsIngredientTextField)
-        contentView.addSubview(atLable)
+        contentView.addSubview(specsIngredientLabel)
         contentView.addSubview(abvTextField)
         contentView.addSubview(percentABV)
-        
+        ozTextField.inputAccessoryView = toolBar()
+        abvTextField.inputAccessoryView = toolBar()
         ozTextField.borderStyle = .roundedRect
-        specsIngredientTextField.borderStyle = .roundedRect
         abvTextField.borderStyle = .roundedRect
-        
         contentView.backgroundColor = UIColor.clear
         
+        ozTextField.keyboardType = .decimalPad
+        abvTextField.keyboardType = .decimalPad
+        
+        ozTextField.delegate = self
+        abvTextField.delegate = self
+        ozTextField.translatesAutoresizingMaskIntoConstraints = true
+        specsIngredientLabel.translatesAutoresizingMaskIntoConstraints = true
+        percentABV.translatesAutoresizingMaskIntoConstraints = true
+        abvTextField.translatesAutoresizingMaskIntoConstraints = true
     }
     
     required init?(coder: NSCoder) {
@@ -98,33 +102,28 @@ class CocktailSpecsTableViewCell: UITableViewCell {
                                   y: 5,
                                   width: 50,
                                   height: contentView.frame.size.height-10)
-        
-        ozOfLable.frame = CGRect(x: 20+Int(ozTextField.frame.size.width),
-                                 y: 5,
-                                 width: 30,
-                                 height: Int(contentView.frame.size.height)-10)
+
         
         
-        specsIngredientTextField.frame = CGRect(x: 30+ozTextField.frame.size.width+ozOfLable.frame.size.width,
+        specsIngredientLabel.frame = CGRect(x: 20+ozTextField.frame.size.width,
                                        y: 5,
-                                       width: 100,
+                                       width: 150,
                                        height: contentView.frame.size.height-10)
         
-        atLable.frame = CGRect(x: 40+ozTextField.frame.size.width+ozOfLable.frame.size.width+specsIngredientTextField.frame.size.width,
-                               y: 5,
-                               width: 20,
-                               height: contentView.frame.size.height-10)
-        
-        
-        
-        abvTextField.frame = CGRect(x: 50+ozTextField.frame.size.width+ozOfLable.frame.size.width+specsIngredientTextField.frame.size.width+atLable.frame.size.width,
+
+        abvTextField.frame = CGRect(x: 30+ozTextField.frame.size.width+specsIngredientLabel.frame.size.width,
                                     y: 5,
                                     width: 40,
                                     height: contentView.frame.size.height-10)
-        percentABV.frame = CGRect(x: 60+ozTextField.frame.size.width+ozOfLable.frame.size.width+specsIngredientTextField.frame.size.width+atLable.frame.size.width+abvTextField.frame.size.width,
+        percentABV.frame = CGRect(x: 40+ozTextField.frame.size.width+specsIngredientLabel.frame.size.width+abvTextField.frame.size.width,
                                   y: 5,
                                   width: 50,
                                   height: contentView.frame.size.height-10)
     }
+   
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        ozTextField.resignFirstResponder()
+        abvTextField.resignFirstResponder()
+    }
 }

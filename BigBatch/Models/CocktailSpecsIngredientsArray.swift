@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct SpecsIngredientsAndName {
+    
+    var cocktailName = ""
+    var specsIngredintsArray = [CocktailIngredientsForCell()]
+    
+    
+}

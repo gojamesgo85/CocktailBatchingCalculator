@@ -22,8 +22,9 @@ class TypeLabel: UILabel {
         textColor = .label
         tintColor = .label
         layer.cornerRadius = 10
-        textAlignment = .center
-        backgroundColor = .white
+        textAlignment = .right
+        backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 0.0)
+        textColor = .white
         font = UIFont.preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
         adjustsFontSizeToFitWidth = true

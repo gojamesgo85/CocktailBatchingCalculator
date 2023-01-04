@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Abs" representedClassName="Abs" syncable="YES" codeGenerationType="class"/>
     <entity name="CocktailEntity" representedClassName="CocktailEntity" syncable="YES" codeGenerationType="class">
         <attribute name="aBV1" attributeType="String"/>
         <attribute name="aBV2" attributeType="String"/>
@@ -9,7 +10,17 @@
         <attribute name="aBV6" attributeType="String"/>
         <attribute name="aBV7" attributeType="String"/>
         <attribute name="aBV8" attributeType="String"/>
+        <attribute name="aBV9" attributeType="String"/>
+        <attribute name="aBV10" attributeType="String"/>
+        <attribute name="aBV11" attributeType="String"/>
+        <attribute name="aBV12" attributeType="String"/>
+        <attribute name="aBV13" attributeType="String"/>
+        <attribute name="aBV14" attributeType="String"/>
+        <attribute name="aBV15" attributeType="String"/>
+        <attribute name="aBV16" attributeType="String"/>
         <attribute name="cocktailName" attributeType="String"/>
+        <attribute name="dilutionPercentage" attributeType="String"/>
+        <attribute name="dilutionType" attributeType="String"/>
         <attribute name="ingredient1Amount" attributeType="String"/>
         <attribute name="ingredient1Name" attributeType="String"/>
         <attribute name="ingredient2Amount" attributeType="String"/>
@@ -26,5 +37,29 @@
         <attribute name="ingredient7Name" attributeType="String"/>
         <attribute name="ingredient8Amount" attributeType="String"/>
         <attribute name="ingredient8Name" attributeType="String"/>
+        <attribute name="ingredient9Amount" attributeType="String"/>
+        <attribute name="ingredient9Name" attributeType="String"/>
+        <attribute name="ingredient10Amount" attributeType="String"/>
+        <attribute name="ingredient10Name" attributeType="String"/>
+        <attribute name="ingredient11Amount" attributeType="String"/>
+        <attribute name="ingredient11Name" attributeType="String"/>
+        <attribute name="ingredient12Amount" attributeType="String"/>
+        <attribute name="ingredient12Name" attributeType="String"/>
+        <attribute name="ingredient13Amount" attributeType="String"/>
+        <attribute name="ingredient13Name" attributeType="String"/>
+        <attribute name="ingredient14Amount" attributeType="String"/>
+        <attribute name="ingredient14Name" attributeType="String"/>
+        <attribute name="ingredient15Amount" attributeType="String"/>
+        <attribute name="ingredient15Name" attributeType="String"/>
+        <attribute name="ingredient16Amount" attributeType="String"/>
+        <attribute name="ingredient16Name" attributeType="String"/>
+        <attribute name="notes" attributeType="String"/>
+    </entity>
+    <entity name="SingleCocktailEntity" representedClassName="SingleCocktailEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="abv" attributeType="String"/>
+        <attribute name="amount" attributeType="String"/>
+        <attribute name="cellSwitch" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="percentage" attributeType="String"/>
     </entity>
 </model>

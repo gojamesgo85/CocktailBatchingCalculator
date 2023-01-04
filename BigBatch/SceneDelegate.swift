@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    //var SharedBatchCalculatorModel = BatchCalculatorModel()
+
    
     
 
@@ -23,15 +23,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = createTabBar()
         window?.makeKeyAndVisible()
     }
-    
-    func createBatchNavController() -> UINavigationController {
-        let navController = ViewController()
-        navController.title = "Cocktail Specs"
-        navController.tabBarItem = UITabBarItem(title: "Cocktail Specs", image: UIImage(systemName: SFSymbols.jigger), tag: 0)
+  
+    func createCocktailSpecsVC() -> UINavigationController {
+        let homeScreen =  CocktailSpecsVC()
+        homeScreen.title = "Cocktail Specs"
+        homeScreen.tabBarItem = UITabBarItem(title: "Cocktail Specs", image: UIImage(systemName: SFSymbols.jigger), tag: 0)
         
-        return UINavigationController(rootViewController: navController)
+        return UINavigationController(rootViewController: homeScreen)
     }
-    
     func createSavedBatchesVC() -> UINavigationController {
         let batchVC = SavedBatches(persistantStorage: StorageProvider.sharedStorageProvider)
         batchVC.title = "Your Saved Cocktails"
@@ -44,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().tintColor = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 1.0)
         UITabBar.appearance().backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.0)
         UITabBar.appearance().unselectedItemTintColor = .systemGray4
-        tabbar.viewControllers = [createBatchNavController(), createSavedBatchesVC()]
+        tabbar.viewControllers = [createCocktailSpecsVC(), createSavedBatchesVC()]
         return tabbar
     }
 
