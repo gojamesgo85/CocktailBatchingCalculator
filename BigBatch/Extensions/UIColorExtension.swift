@@ -31,4 +31,8 @@ extension UIColor {
     static var gradientCocktailSpecsEnd: UIColor {
         UIColor(named: "gradientCocktailSpecsEnd") ?? UIColor(red: 0.0784, green: 0.3059, blue: 0.9882, alpha: 1.0)
     }
+    
+    static var gradientCocktailSpecsEnd2: UIColor {
+        UIColor(named: "gradientCocktailSpecsEnd") ?? UIColor(red: 0.0784, green: 0.3059, blue: 0.9882, alpha: 1.0)
+    }
 }
