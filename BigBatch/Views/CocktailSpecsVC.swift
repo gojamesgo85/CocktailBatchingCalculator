@@ -12,7 +12,6 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     let alert = Alert()
     
     
-   /// this is just a test.
     
     func rearrangeArray() {
         
@@ -733,8 +732,7 @@ extension CocktailSpecsVC: AddIngredientToTableViewDelegate, AddNotesDelegate {
             }
         }
         if nonDilutionIngredient == 15 {
-            alert.showAlert(with: "Oops!", message: "OK, Jeff Berry. That's too many ingredients. To add another ingredient, you'll have to delete one. Maybe rethink this build?🤔", on: self)
-            //self.showAllert()
+            alert.showAlert(with: "That's too many ingredients!", message: "To add another, you'll have to delete one by swiping left.", on: self)
             return
         } else {
             cocktailIngredient.name = name
