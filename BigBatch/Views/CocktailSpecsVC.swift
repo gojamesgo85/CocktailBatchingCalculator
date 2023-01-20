@@ -758,9 +758,7 @@ extension CocktailSpecsVC: AddIngredientToTableViewDelegate, AddNotesDelegate {
         alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertView, animated: true)
     }
-    
-    
-    
+
 }
 
 
