@@ -12,7 +12,7 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     let alert = Alert()
     
     
-   
+   /// this is just a test.
     
     func rearrangeArray() {
         
