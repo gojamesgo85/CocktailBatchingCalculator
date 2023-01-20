@@ -18,7 +18,7 @@ class AddIngredientVC: UIViewController {
     
     var addIngredientDelegate: AddIngredientToTableViewDelegate?
     
-    var cocktail = Cocktail()
+    var cocktail = CocktailModel()
     
     let ingredientNameLabel = TypeLabel()
     let ingredientAmountLabel = TypeLabel()

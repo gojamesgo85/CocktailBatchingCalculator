@@ -8,11 +8,7 @@
 import UIKit
 
 class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    
-    
-    
-    
-    
+
     var batchedCellData = BatchedCellData()
     var batchedCellDataArray: [BatchedCellData] = []
     
@@ -73,7 +69,8 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var mlAmount15 = 0.0
     var mlAmount16 = 0.0
 
-    let cocktail = Cocktail()
+    let cocktail = CocktailModel()
+    let colorPalette = ColorPalette()
     var cocktailCountTextField = CocktailIngredientAmountTF()
     var cocktailCountLabel = TypeLabel()
     var totalDilutionTextField = TypeLabel()
@@ -96,7 +93,7 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var actualDilutionPercentageNumber = 0.0
     
     var labelHeight = CGFloat(40)
-    init(cocktail: Cocktail) {
+    init(cocktail: CocktailModel) {
         batchedCocktailName = cocktail.savedCocktailName
         batchedIngredient1 = cocktail.modelIngredient1Name
         batchedIngredient2 = cocktail.modelIngredient2Name
@@ -146,18 +143,12 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 
                 if batchedAmountArray[i] != "" {
                     batchedCellData.ingredientName = batchedIngredientArray[i]
-                    print(batchedIngredientArray[i])
                     batchedCellData.initialOzAmount = batchedAmountArray[i]
                     batchedCellDataArray.append(batchedCellData)
                 }
-                
             }
-            
         }
-        
-      
-        
-        
+
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -166,13 +157,11 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         super.init(nibName: nil, bundle: nil)
         
     }
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Total Batch: \(batchedCocktailName)"
@@ -233,15 +222,27 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return batchedCellDataArray.count
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = batchIngredientsTableView.dequeueReusableCell(withIdentifier: TotalBatchTableViewCell.batchCellIdentifier, for: indexPath) as! TotalBatchTableViewCell
-        let colorArray = [cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue ]
+        let colorArray = [colorPalette.blue,
+                          colorPalette.red,
+                          colorPalette.orange,
+                          colorPalette.lightOrange,
+                          colorPalette.forestGreen,
+                          colorPalette.blue,
+                          colorPalette.red,
+                          colorPalette.orange,
+                          colorPalette.lightOrange,
+                          colorPalette.forestGreen,
+                          colorPalette.blue,
+                          colorPalette.red,
+                          colorPalette.orange,
+                          colorPalette.lightOrange,
+                          colorPalette.forestGreen,
+                          colorPalette.blue ]
         
         cell.segmentedControlDelegate = self
         cell.textFieldDelegate = self
@@ -263,87 +264,43 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func doBatchMath() {
         
         cocktailCountTextField.text = String(batchedInitialCocktailsNumber.truncate(places: 2))
+  
+        mlAmount1 = (Double(batchedOzAmount1) ?? 0.0) * 29.5735
+        mlAmount2 = (Double(batchedOzAmount2) ?? 0.0) * 29.5735
+        mlAmount3 = (Double(batchedOzAmount3) ?? 0.0) * 29.5735
+        mlAmount4 = (Double(batchedOzAmount4) ?? 0.0) * 29.5735
+        mlAmount5 = (Double(batchedOzAmount5) ?? 0.0) * 29.5735
+        mlAmount6 = (Double(batchedOzAmount6) ?? 0.0) * 29.5735
+        mlAmount7 = (Double(batchedOzAmount7) ?? 0.0) * 29.5735
+        mlAmount8 = (Double(batchedOzAmount8) ?? 0.0) * 29.5735
+        mlAmount9 = (Double(batchedOzAmount9) ?? 0.0) * 29.5735
+        mlAmount10 = (Double(batchedOzAmount10) ?? 0.0) * 29.5735
+        mlAmount11 = (Double(batchedOzAmount11) ?? 0.0) * 29.5735
+        mlAmount12 = (Double(batchedOzAmount12) ?? 0.0) * 29.5735
+        mlAmount13 = (Double(batchedOzAmount13) ?? 0.0) * 29.5735
+        mlAmount14 = (Double(batchedOzAmount14) ?? 0.0) * 29.5735
+        mlAmount15 = (Double(batchedOzAmount15) ?? 0.0) * 29.5735
+        mlAmount16 = (Double(batchedOzAmount16) ?? 0.0) * 29.5735
         
-        let stringToNumberOzAmount1 = Double(batchedOzAmount1) ?? 0.0
-        let stringToNumberOzAmount2 = Double(batchedOzAmount2) ?? 0.0
-        let stringToNumberOzAmount3 = Double(batchedOzAmount3) ?? 0.0
-        let stringToNumberOzAmount4 = Double(batchedOzAmount4) ?? 0.0
-        let stringToNumberOzAmount5 = Double(batchedOzAmount5) ?? 0.0
-        let stringToNumberOzAmount6 = Double(batchedOzAmount6) ?? 0.0
-        let stringToNumberOzAmount7 = Double(batchedOzAmount7) ?? 0.0
-        let stringToNumberOzAmount8 = Double(batchedOzAmount8) ?? 0.0
-        let stringToNumberOzAmount9 = Double(batchedOzAmount9) ?? 0.0
-        let stringToNumberOzAmount10 = Double(batchedOzAmount10) ?? 0.0
-        let stringToNumberOzAmount11 = Double(batchedOzAmount11) ?? 0.0
-        let stringToNumberOzAmount12 = Double(batchedOzAmount12) ?? 0.0
-        let stringToNumberOzAmount13 = Double(batchedOzAmount13) ?? 0.0
-        let stringToNumberOzAmount14 = Double(batchedOzAmount14) ?? 0.0
-        let stringToNumberOzAmount15 = Double(batchedOzAmount15) ?? 0.0
-        let stringToNumberOzAmount16 = Double(batchedOzAmount16) ?? 0.0
-        
-        
-        mlAmount1 = stringToNumberOzAmount1 * 29.5735
-        mlAmount2 = stringToNumberOzAmount2 * 29.5735
-        mlAmount3 = stringToNumberOzAmount3 * 29.5735
-        mlAmount4 = stringToNumberOzAmount4 * 29.5735
-        mlAmount5 = stringToNumberOzAmount5 * 29.5735
-        mlAmount6 = stringToNumberOzAmount6 * 29.5735
-        mlAmount7 = stringToNumberOzAmount7 * 29.5735
-        mlAmount8 = stringToNumberOzAmount8 * 29.5735
-        mlAmount9 = stringToNumberOzAmount9 * 29.5735
-        mlAmount10 = stringToNumberOzAmount10 * 29.5735
-        mlAmount11 = stringToNumberOzAmount11 * 29.5735
-        mlAmount12 = stringToNumberOzAmount12 * 29.5735
-        mlAmount13 = stringToNumberOzAmount13 * 29.5735
-        mlAmount14 = stringToNumberOzAmount14 * 29.5735
-        mlAmount15 = stringToNumberOzAmount15 * 29.5735
-        mlAmount16 = stringToNumberOzAmount16 * 29.5735
-        let mlAmountArray = [mlAmount1, mlAmount2, mlAmount3, mlAmount4, mlAmount5, mlAmount6, mlAmount7, mlAmount8, mlAmount9, mlAmount10, mlAmount11, mlAmount12, mlAmount13, mlAmount14, mlAmount15, mlAmount16]
+        var mlAmountArray = [mlAmount1, mlAmount2, mlAmount3, mlAmount4, mlAmount5, mlAmount6, mlAmount7, mlAmount8, mlAmount9, mlAmount10, mlAmount11, mlAmount12, mlAmount13, mlAmount14, mlAmount15, mlAmount16]
         for i in 0..<batchedCellDataArray.count {
             batchedCellDataArray[i].mlAmount = mlAmountArray[i]
         }
 
-       
-
-        let doubleToInt1 = 0.0
-        let doubleToInt2 = 0.0
-        let doubleToInt3 = 0.0
-        let doubleToInt4 = 0.0
-        let doubleToInt5 = 0.0
-        let doubleToInt6 = 0.0
-        let doubleToInt7 = 0.0
-        let doubleToInt8 = 0.0
-        let doubleToInt9 = 0.0
-        let doubleToInt10 = 0.0
-        let doubleToInt11 = 0.0
-        let doubleToInt12 = 0.0
-        let doubleToInt13 = 0.0
-        let doubleToInt14 = 0.0
-        let doubleToInt15 = 0.0
-        let doubleToInt16 = 0.0
-        
-    
-
-        
-        var wholeMlPerIngredientAmount = [doubleToInt1 ,doubleToInt2 ,doubleToInt3 , doubleToInt4, doubleToInt5, doubleToInt6, doubleToInt7, doubleToInt8 ,doubleToInt9 ,doubleToInt10 , doubleToInt11, doubleToInt12, doubleToInt13, doubleToInt14,doubleToInt15, doubleToInt16]
-      
-
-        
-
         
         for i in 0..<batchedCellDataArray.count {
             
-            wholeMlPerIngredientAmount[i] = batchedCellDataArray[i].mlAmount * batchedInitialCocktailsNumber
-            //print("\(batchedCellDataArray[i].ingredientName) is multiplied by \(batchedInitialCocktailsNumber) with it's initial value \(batchedCellDataArray[i].mlAmount) to get \(wholeMlPerIngredientAmount[i]) ")
+            mlAmountArray[i] = batchedCellDataArray[i].mlAmount * batchedInitialCocktailsNumber
+           
             if batchedCellDataArray[i].segmentedControlSelectedIndex == 1 {
                 
-                let mathfor750s = mlLiterMath(mlsIngredientVolume: Int(wholeMlPerIngredientAmount[i]))
+                let mathfor750s = mlLiterMath(mlsIngredientVolume: Int(ceil(mlAmountArray[i])))
                 batchedCellDataArray[i].wholeBottles = mathfor750s.whole750sCount
                 batchedCellDataArray[i].remainingMls = mathfor750s.remaining750Mls
                 
             } else {
                 
-                let literMath = oneLiterMath(mlsIngredientVolume: Int(wholeMlPerIngredientAmount[i]))
+                let literMath = oneLiterMath(mlsIngredientVolume: Int(ceil(mlAmountArray[i])))
                 batchedCellDataArray[i].wholeBottles = literMath.oneLiterCount
                 batchedCellDataArray[i].remainingMls = literMath.remainingLiterMls
             }
@@ -372,10 +329,6 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         return (whole750sCount, remaining750Mls)
     }
 
-
-   
-
-        
         var totalVolumePreDilution = 0
 
         for i in 0..<batchedCellDataArray.count {
@@ -391,115 +344,18 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
       
         let conformedDilutionPercentage = Double(batchedDilutionPercentage) ?? 0.0
         actualDilutionPercentageNumber = conformedDilutionPercentage / 100.0
-        let mathMlDilutionAmount = Double(totalVolumePreDilution) * actualDilutionPercentageNumber
-        let mathLiterDilutionAmount = mathMlDilutionAmount / 1000
+        mlDilutionAmouunt = Double(totalVolumePreDilution) * actualDilutionPercentageNumber
+        literDilutionAmount = mlDilutionAmouunt / 1000
         
-        
-        literDilutionAmount = mathLiterDilutionAmount
-        mlDilutionAmouunt = mathMlDilutionAmount
         totalDilutionTextField.text = "\(Int(mlDilutionAmouunt))mls"
        
-        let totalVolumeInMls = totalVolumePreDilution + Int(mlDilutionAmouunt)
+        let totalVolumeInMls = totalVolumePreDilution + Int(ceil(mlDilutionAmouunt))
         let totalVolumeInLiters = Double(totalVolumeInMls) / 1000.0
         
         totalVolumeLabel.text = "Total Volume = \(totalVolumeInMls)mls (\(totalVolumeInLiters)Liters)"
         
         batchedTotalVolume = totalVolumeInMls
         batchIngredientsTableView.reloadData()
-        
-        
-    }
-    
-    func configureTopAnchorFields() {
-        view.addSubview(cocktailCountLabel)
-        view.addSubview(cocktailCountTextField)
-        view.addSubview(totalDilutionTextField)
-        view.addSubview(totalDilutionLabel)
-        view.addSubview(totalVolumeLabel)
-        view.addSubview(tableViewLabel)
-        tableViewLabel.text = "   Ingredient Name:        Btl. Size:      # of btls/remaining mls: "
-        cocktailCountLabel.text = "Cocktail Count:"
-        totalDilutionLabel.text = "Total Dilution (\(batchedDilutionType)) = "
-        totalVolumeLabel.text = "Total Volume in Liters:"
-        totalVolumeLabel.textAlignment = .center
-        totalDilutionTextField.textAlignment = .left
-        totalDilutionLabel.textAlignment = .right
-        cocktailCountTextField.text = String(batchedInitialCocktailsNumber)
-        
-        cocktailCountTextField.addTarget(self, action: #selector(cocktailCountChanged), for: .editingDidEnd)
-        
-        cocktailCountTextField.inputAccessoryView = toolBar()
-        NSLayoutConstraint.activate([
-            
-            cocktailCountLabel.trailingAnchor.constraint(equalTo: cocktailCountTextField.leadingAnchor, constant: -5),
-            cocktailCountLabel.topAnchor.constraint(equalTo: cocktailCountTextField.topAnchor),
-            cocktailCountLabel.heightAnchor.constraint(equalToConstant: labelHeight),
-            cocktailCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            cocktailCountTextField.leadingAnchor.constraint(equalTo: cocktailCountLabel.trailingAnchor, constant: 5),
-            cocktailCountTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
-            cocktailCountTextField.heightAnchor.constraint(equalToConstant: labelHeight),
-            cocktailCountTextField.widthAnchor.constraint(equalToConstant: 80),
-      
-            totalDilutionLabel.trailingAnchor.constraint(equalTo: totalDilutionTextField.leadingAnchor, constant: -5),
-            totalDilutionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            totalDilutionLabel.bottomAnchor.constraint(equalTo: totalDilutionTextField.bottomAnchor),
-            totalDilutionLabel.heightAnchor.constraint(equalToConstant: labelHeight),
-            
-            totalDilutionTextField.widthAnchor.constraint(equalToConstant: 125),
-            totalDilutionTextField.bottomAnchor.constraint(equalTo: totalVolumeLabel.topAnchor, constant: -5),
-            totalDilutionTextField.heightAnchor.constraint(equalToConstant: labelHeight),
-            totalDilutionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-
-            totalVolumeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            totalVolumeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            totalVolumeLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -140),
-            totalVolumeLabel.heightAnchor.constraint(equalToConstant: labelHeight),
-        
-            tableViewLabel.topAnchor.constraint(equalTo: cocktailCountTextField.bottomAnchor),
-            tableViewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            tableViewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            tableViewLabel.heightAnchor.constraint(equalToConstant: 30)
-        
-        ])
-    }
-    
-    @objc func cocktailCountChanged() {
-        guard let newCocktailCount = cocktailCountTextField.text else { return }
-        batchedInitialCocktailsNumber = Double(newCocktailCount) ?? 0.0
-        doBatchMath()
-        batchIngredientsTableView.reloadData()
-        
-    }
-    
-    func configureTableView() {
-        view.addSubview(batchIngredientsTableView)
-        batchIngredientsTableView.layer.borderWidth = 1
-        batchIngredientsTableView.layer.borderColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        batchIngredientsTableView.layer.cornerRadius = 10 
-        batchIngredientsTableView.translatesAutoresizingMaskIntoConstraints = false
-        batchIngredientsTableView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.0)
-
-        NSLayoutConstraint.activate([
-            batchIngredientsTableView.topAnchor.constraint(equalTo: tableViewLabel.bottomAnchor, constant: 5),
-            batchIngredientsTableView.bottomAnchor.constraint(equalTo: totalDilutionTextField.topAnchor, constant: -5),
-            batchIngredientsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            batchIngredientsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5)
-            ])
-    }
-    func configureSplitBatchButton() {
-        view.addSubview(splitBatchButton)
-        splitBatchButton.setTitle("Split Batch", for: .normal)
-        
-        splitBatchButton.addTarget(self, action: #selector(pushChooseContainerView), for: .touchUpInside)
-        NSLayoutConstraint.activate([
-            splitBatchButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
-            splitBatchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            splitBatchButton.widthAnchor.constraint(equalToConstant: 125),
-            splitBatchButton.heightAnchor.constraint(equalToConstant: labelHeight)
-
-
-        ])
         
         
     }
@@ -594,6 +450,101 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                                                                    cocktailName: batchedCocktailName), animated: true)
         
     }
+    
+    func configureTopAnchorFields() {
+        view.addSubview(cocktailCountLabel)
+        view.addSubview(cocktailCountTextField)
+        view.addSubview(totalDilutionTextField)
+        view.addSubview(totalDilutionLabel)
+        view.addSubview(totalVolumeLabel)
+        view.addSubview(tableViewLabel)
+        tableViewLabel.text = "Ingredient Name:        Btl. Size:      # of btls/remaining mls: "
+        cocktailCountLabel.text = "Cocktail Count:"
+        totalDilutionLabel.text = "Total Dilution (\(batchedDilutionType)) = "
+        totalVolumeLabel.text = "Total Volume in Liters:"
+        totalVolumeLabel.textAlignment = .center
+        totalDilutionTextField.textAlignment = .left
+        totalDilutionLabel.textAlignment = .right
+        cocktailCountTextField.text = String(batchedInitialCocktailsNumber)
+        
+        cocktailCountTextField.addTarget(self, action: #selector(cocktailCountChanged), for: .editingDidEnd)
+        
+        cocktailCountTextField.inputAccessoryView = toolBar()
+        NSLayoutConstraint.activate([
+            
+            cocktailCountLabel.trailingAnchor.constraint(equalTo: cocktailCountTextField.leadingAnchor, constant: -5),
+            cocktailCountLabel.topAnchor.constraint(equalTo: cocktailCountTextField.topAnchor),
+            cocktailCountLabel.heightAnchor.constraint(equalToConstant: labelHeight),
+            cocktailCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            cocktailCountTextField.leadingAnchor.constraint(equalTo: cocktailCountLabel.trailingAnchor, constant: 5),
+            cocktailCountTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
+            cocktailCountTextField.heightAnchor.constraint(equalToConstant: labelHeight),
+            cocktailCountTextField.widthAnchor.constraint(equalToConstant: 80),
+      
+            totalDilutionLabel.trailingAnchor.constraint(equalTo: totalDilutionTextField.leadingAnchor, constant: -5),
+            totalDilutionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            totalDilutionLabel.bottomAnchor.constraint(equalTo: totalDilutionTextField.bottomAnchor),
+            totalDilutionLabel.heightAnchor.constraint(equalToConstant: labelHeight),
+            
+            totalDilutionTextField.widthAnchor.constraint(equalToConstant: 125),
+            totalDilutionTextField.bottomAnchor.constraint(equalTo: totalVolumeLabel.topAnchor, constant: -5),
+            totalDilutionTextField.heightAnchor.constraint(equalToConstant: labelHeight),
+            totalDilutionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+
+            totalVolumeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            totalVolumeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            totalVolumeLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -140),
+            totalVolumeLabel.heightAnchor.constraint(equalToConstant: labelHeight),
+        
+            tableViewLabel.topAnchor.constraint(equalTo: cocktailCountTextField.bottomAnchor),
+            tableViewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            tableViewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            tableViewLabel.heightAnchor.constraint(equalToConstant: 30)
+        
+        ])
+    }
+    
+    @objc func cocktailCountChanged() {
+        guard let newCocktailCount = cocktailCountTextField.text else { return }
+        batchedInitialCocktailsNumber = Double(newCocktailCount) ?? 0.0
+        doBatchMath()
+        batchIngredientsTableView.reloadData()
+        
+    }
+    
+    func configureTableView() {
+        view.addSubview(batchIngredientsTableView)
+        batchIngredientsTableView.layer.borderWidth = 1
+        batchIngredientsTableView.layer.borderColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        batchIngredientsTableView.layer.cornerRadius = 10
+        batchIngredientsTableView.translatesAutoresizingMaskIntoConstraints = false
+        batchIngredientsTableView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.0)
+
+        NSLayoutConstraint.activate([
+            batchIngredientsTableView.topAnchor.constraint(equalTo: tableViewLabel.bottomAnchor, constant: 5),
+            batchIngredientsTableView.bottomAnchor.constraint(equalTo: totalDilutionTextField.topAnchor, constant: -5),
+            batchIngredientsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            batchIngredientsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5)
+            ])
+    }
+    func configureSplitBatchButton() {
+        view.addSubview(splitBatchButton)
+        splitBatchButton.setTitle("Split Batch", for: .normal)
+        
+        splitBatchButton.addTarget(self, action: #selector(pushChooseContainerView), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            splitBatchButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
+            splitBatchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            splitBatchButton.widthAnchor.constraint(equalToConstant: 125),
+            splitBatchButton.heightAnchor.constraint(equalToConstant: labelHeight)
+
+
+        ])
+        
+        
+    }
+    
 
     @objc func keyboardWillHide(notification: NSNotification) {
         view.frame.origin.y = 0
@@ -605,10 +556,7 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         batchedInitialCocktailsNumber = 1
         doBatchMath()
         singleCocktailVolume = batchedTotalVolume
-        
         singleCoctailDilutionMls = Double(singleCocktailVolume) * actualDilutionPercentageNumber
-        print("single cocktail volume is \(singleCocktailVolume)")
-        print("single cocktail dilution volume = \(singleCoctailDilutionMls)")
         batchedInitialCocktailsNumber = currentCocktailCount
         doBatchMath()
 
@@ -663,13 +611,10 @@ extension BatchedVC1: BatchTableViewCellDelegate, SegmentedControlChangedDelegat
         if batchedCellDataArray[indexPath].segmentedControlSelectedIndex == 0 {
             let bottleIntoMls = stringIntoDouble * 1000
             batchedInitialCocktailsNumber = bottleIntoMls / batchedCellDataArray[indexPath].mlAmount
-            print(" bottle into mls = \(bottleIntoMls) and the ingredient mlsAmount = \(batchedCellDataArray[indexPath].mlAmount)")
-            print("the index path = \(indexPath)")
         } else {
             let bottleIntoMls = stringIntoDouble * 750
             batchedInitialCocktailsNumber = bottleIntoMls / batchedCellDataArray[indexPath].mlAmount
-            print(" bottle into mls = \(bottleIntoMls) and the ingredient mlsAmount = \(batchedCellDataArray[indexPath].mlAmount)")
-            print("the index path = \(indexPath)")
+    
         }
         
         doBatchMath()
@@ -684,3 +629,4 @@ extension BatchedVC1: BatchTableViewCellDelegate, SegmentedControlChangedDelegat
     }
     
 }
+

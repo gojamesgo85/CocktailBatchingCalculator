@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Cocktail {
+struct CocktailModel {
     
     var savedCocktailName = ""
     
@@ -43,23 +43,27 @@ struct Cocktail {
     var modelOzAmount14 = ""
     var modelOzAmount15 = ""
     var modelOzAmount16 = ""
+    var modelAlcoholPercentage1 = ""
+    var modelAlcoholPercentage2 = ""
+    var modelAlcoholPercentage3 = ""
+    var modelAlcoholPercentage4 = ""
+    var modelAlcoholPercentage5 = ""
+    var modelAlcoholPercentage6 = ""
+    var modelAlcoholPercentage7 = ""
+    var modelAlcoholPercentage8 = ""
+    var modelAlcoholPercentage9 = ""
+    var modelAlcoholPercentage10 = ""
+    var modelAlcoholPercentage11 = ""
+    var modelAlcoholPercentage12 = ""
+    var modelAlcoholPercentage13 = ""
+    var modelAlcoholPercentage14 = ""
+    var modelAlcoholPercentage15 = ""
+    var modelAlcoholPercentage16 = ""
     
     var modelDilutionPercentage = ""
     var modelDilutionType = ""
 
     var modelInitialCocktailsNumber = ""
-    
-    let red = UIColor(red: 219/255, green:7/255, blue: 61/255, alpha: 1.0)
-    let green = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 1.0)
-    let teal = UIColor(red: 142/255, green: 199/255, blue: 210/255, alpha: 1.0)
-    let orange = UIColor(red: 255.0/255.0, green: 94.0/255.0, blue: 58.0/255.0, alpha: 1.0)
-    let yellow = UIColor(red: 247/255, green: 219/255, blue: 61/255, alpha: 1.0)
-    let blue = UIColor(red: 13/255, green: 105/255, blue: 134/255, alpha: 1.0)
-    let brown = UIColor(red: 193.57/255, green: 85.71/255, blue: 19.22/255, alpha: 1.0)
-    
-    let lightOrange = UIColor(red: 255/255, green: 172/255, blue: 79/255, alpha: 1.0)
-    let lightBlue = UIColor(red: 78/255, green: 188/255, blue: 252/255, alpha: 1.0)
-    let forestGreen = UIColor(red: 63/255, green: 124/255, blue: 69/255, alpha: 1.0)
-    let purpleish = UIColor(red: 160/255, green: 54/255, blue: 72/255, alpha: 1.0)
+
 }
 

@@ -16,7 +16,8 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var splitBatchCellDataArray: [SplitBatchCellData] = []
     var batchedCocktailName = ""
 
-    let cocktail = Cocktail()
+    let cocktail = CocktailModel()
+    let colorPalette = ColorPalette()
 
     
     var cocktailCountLabel = TypeLabel()
@@ -442,7 +443,22 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SplitBatchTableViewCell
-        let colorArray = [cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue ]
+        let colorArray = [colorPalette.blue,
+                          colorPalette.red,
+                          colorPalette.orange,
+                          colorPalette.lightOrange,
+                          colorPalette.forestGreen,
+                          colorPalette.blue,
+                          colorPalette.red,
+                          colorPalette.orange,
+                          colorPalette.lightOrange,
+                          colorPalette.forestGreen,
+                          colorPalette.blue,
+                          colorPalette.red,
+                          colorPalette.orange,
+                          colorPalette.lightOrange,
+                          colorPalette.forestGreen,
+                          colorPalette.blue ]
         switch tableView {
         case wholeContainerBatchTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SplitBatchTableViewCell
@@ -450,7 +466,7 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
            
             cell.backgroundColor = colorArray[indexPath.row]
             if indexPath.row == splitBatchCellDataArray.count - 1 {
-                cell.backgroundColor = cocktail.teal
+                cell.backgroundColor = colorPalette.teal
             }
             if totalContainerCount < 1.0 {
                 cell.amountLabel.text = "Insufficient Volume"
@@ -469,7 +485,7 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             cell.backgroundColor = colorArray[indexPath.row]
             if indexPath.row == splitBatchCellDataArray.count - 1 {
-                cell.backgroundColor = cocktail.teal
+                cell.backgroundColor = colorPalette.teal
             }
         default:
             print("oops! Something Went Wrong!")
@@ -504,4 +520,3 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
 
 }
-
