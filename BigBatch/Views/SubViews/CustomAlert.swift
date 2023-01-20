@@ -10,7 +10,7 @@ import UIKit
 class Alert {
     
     struct Constants {
-        static let backgroundAlphaTo: CGFloat = 0.6
+        static let backgroundAlphaTo: CGFloat = 0.9
     }
     
     private let backgroundView: UIView = {
@@ -23,10 +23,10 @@ class Alert {
     private let alertView: UIView = {
         let alert = UIView()
         alert.backgroundColor = UIColor.systemGray2
-        alert.layer.borderWidth = 10
+        alert.layer.borderWidth = 0
         alert.layer.borderColor = CGColor(red: 219/255, green:7/255, blue: 61/255, alpha: 1.0)
         alert.layer.masksToBounds = true
-        alert.layer.cornerRadius = 10
+        alert.layer.cornerRadius = 45
         return alert
 
     }()
@@ -39,8 +39,6 @@ class Alert {
         }
         
         myTargetView = targetView
-        
-        
         backgroundView.frame = targetView.bounds
         targetView.addSubview(backgroundView)
         
@@ -52,6 +50,13 @@ class Alert {
                                  width: targetView.frame.size.width-80,
                                  height: 250)
         
+        let gradientLayer = CAGradientLayer.gradientLayer(for: .cocktailSpecs, in: CGRect(x: 40,
+                                                                                         y: -300,
+                                                                                         width: targetView.frame.size.width-80,
+                                                                                         height: 250))
+        gradientLayer.frame = alertView.bounds
+        alertView.layer.insertSublayer(gradientLayer, at: 0)
+        
         let titleLabel = UILabel(frame: CGRect(x: 0,
                                                y: 0,
                                                width: alertView.frame.size.width,
@@ -59,7 +64,7 @@ class Alert {
         titleLabel.text = title
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor(red: 219/255, green:7/255, blue: 61/255, alpha: 1.0)
-        titleLabel.font = .systemFont(ofSize: CGFloat(18), weight: .semibold)
+        titleLabel.font = .systemFont(ofSize: CGFloat(22), weight: .bold)
         alertView.addSubview(titleLabel)
         
         let messageLabel = UILabel(frame: CGRect(x: 15,
@@ -68,8 +73,9 @@ class Alert {
                                                height: 170))
         messageLabel.numberOfLines = 0
         messageLabel.text = message
+        messageLabel.textColor = .white
         messageLabel.textAlignment = .center
-        messageLabel.font = .systemFont(ofSize: CGFloat(18), weight: .semibold)
+        messageLabel.font = .systemFont(ofSize: CGFloat(18), weight: .bold)
         alertView.addSubview(messageLabel)
         
         let button = UIButton(frame: CGRect(x: 0,
@@ -80,12 +86,10 @@ class Alert {
         button.setTitle("Close", for: .normal)
         button.setTitleColor(UIColor.systemRed, for: .normal)
         button.addTarget(self, action: #selector(dismissAlert), for: .touchUpInside)
-        button.layer.borderWidth = 10
-        //button.layer.cornerRadius = 10
-        button.backgroundColor = .white
+        button.backgroundColor = .clear
         button.layer.borderColor = CGColor(red: 219/255, green:7/255, blue: 61/255, alpha: 1.0)
         alertView.addSubview(button)
-        UIView.animate(withDuration: 0.25, animations: {
+        UIView.animate(withDuration: 0.50, animations: {
             
             self.alertView.frame = CGRect(x: 40,
                                      y: -300,
