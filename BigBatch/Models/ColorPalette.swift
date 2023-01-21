@@ -10,7 +10,7 @@ import UIKit
 struct ColorPalette {
     
     let red = UIColor(red: 219/255, green:7/255, blue: 61/255, alpha: 1.0)
-    let green = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 1.0)
+    let green = UIColor(red: 76.5/255, green: 204/255, blue: 153/255, alpha: 1.0)
     let teal = UIColor(red: 142/255, green: 199/255, blue: 210/255, alpha: 1.0)
     let orange = UIColor(red: 255.0/255.0, green: 94.0/255.0, blue: 58.0/255.0, alpha: 1.0)
     let yellow = UIColor(red: 247/255, green: 219/255, blue: 61/255, alpha: 1.0)
@@ -21,5 +21,14 @@ struct ColorPalette {
     let lightBlue = UIColor(red: 78/255, green: 188/255, blue: 252/255, alpha: 1.0)
     let forestGreen = UIColor(red: 63/255, green: 124/255, blue: 69/255, alpha: 1.0)
     let purpleish = UIColor(red: 160/255, green: 54/255, blue: 72/255, alpha: 1.0)
+    
+    
+    func getTableViewColors() -> [UIColor] {
+        return [blue,red,orange,lightOrange,forestGreen,blue,red,orange,lightOrange,forestGreen,blue,red,orange,lightOrange,forestGreen,blue]
+    }
+    
+    func getSavedTableViewColors() -> [UIColor] {
+        return [teal, blue, red, orange, lightOrange, forestGreen] 
+    }
     
 }

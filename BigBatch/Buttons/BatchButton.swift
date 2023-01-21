@@ -9,6 +9,7 @@ import UIKit
 
 class BatchButton: UIButton {
 
+    let colorPalette = ColorPalette()
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -21,7 +22,7 @@ class BatchButton: UIButton {
     
     private func configure() {
         layer.cornerRadius = 10
-        backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 1.0)
+        backgroundColor = colorPalette.green
         setTitle("Batch", for: .normal)
         setTitleColor(.systemGray6, for: .normal)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)

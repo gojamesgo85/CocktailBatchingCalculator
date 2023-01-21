@@ -37,6 +37,8 @@
 		1AAB69562945428300779DC3 /* CocktailSpecsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB69552945428300779DC3 /* CocktailSpecsVC.swift */; };
 		1AAB69582945C6B100779DC3 /* AddIngredientVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB69572945C6B100779DC3 /* AddIngredientVC.swift */; };
 		1ABA503B297AECC700F22E3C /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA503A297AECC700F22E3C /* ColorPalette.swift */; };
+		1AC2DC54297B6D7B00AA37E3 /* SplitBatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2DC53297B6D7B00AA37E3 /* SplitBatchModel.swift */; };
+		1AC2DC56297C954D00AA37E3 /* ABVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2DC55297C954D00AA37E3 /* ABVModel.swift */; };
 		1AE8B12D295244A600D50137 /* SplitBatchCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8B12C295244A600D50137 /* SplitBatchCellData.swift */; };
 		1AE8B12F2952556700D50137 /* SplitBatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8B12E2952556700D50137 /* SplitBatchTableViewCell.swift */; };
 		1AE8B131295E726700D50137 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8B130295E726700D50137 /* CustomAlert.swift */; };
@@ -75,6 +77,8 @@
 		1AAB69552945428300779DC3 /* CocktailSpecsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailSpecsVC.swift; sourceTree = "<group>"; };
 		1AAB69572945C6B100779DC3 /* AddIngredientVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientVC.swift; sourceTree = "<group>"; };
 		1ABA503A297AECC700F22E3C /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		1AC2DC53297B6D7B00AA37E3 /* SplitBatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBatchModel.swift; sourceTree = "<group>"; };
+		1AC2DC55297C954D00AA37E3 /* ABVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABVModel.swift; sourceTree = "<group>"; };
 		1AE8B12C295244A600D50137 /* SplitBatchCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBatchCellData.swift; sourceTree = "<group>"; };
 		1AE8B12E2952556700D50137 /* SplitBatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBatchTableViewCell.swift; sourceTree = "<group>"; };
 		1AE8B130295E726700D50137 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
@@ -182,12 +186,14 @@
 			isa = PBXGroup;
 			children = (
 				1A4D63392934460800955459 /* CocktailModel.swift */,
+				1AC2DC53297B6D7B00AA37E3 /* SplitBatchModel.swift */,
 				1ABA503A297AECC700F22E3C /* ColorPalette.swift */,
 				1A4FD2E2294673680075B2CB /* cocktailIngredientsForCell.swift */,
 				1AAB694F2945260B00779DC3 /* CAGradientLayer+ViewStyle.swift */,
 				1AAB69512945273400779DC3 /* ViewStyles.swift */,
 				1A2F14F2294D17870020BA1A /* BatchedCellData.swift */,
 				1AE8B12C295244A600D50137 /* SplitBatchCellData.swift */,
+				1AC2DC55297C954D00AA37E3 /* ABVModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,8 +303,10 @@
 				1A4D6325292D7D5500955459 /* CocktailIngredientAmountTF.swift in Sources */,
 				1AAB6954294528F800779DC3 /* UIColorExtension.swift in Sources */,
 				1A2F14F3294D17870020BA1A /* BatchedCellData.swift in Sources */,
+				1AC2DC54297B6D7B00AA37E3 /* SplitBatchModel.swift in Sources */,
 				1A4D6332292DF69E00955459 /* TypeLabel.swift in Sources */,
 				1A4D6311292D787700955459 /* AppDelegate.swift in Sources */,
+				1AC2DC56297C954D00AA37E3 /* ABVModel.swift in Sources */,
 				1A4D632D292D93AE00955459 /* CocktailIngredientNameTF.swift in Sources */,
 				1A4FD2E3294673680075B2CB /* cocktailIngredientsForCell.swift in Sources */,
 				1A4D633C29354F9000955459 /* Constants.swift in Sources */,

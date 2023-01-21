@@ -36,10 +36,11 @@ class SplitBatchTableViewCell: UITableViewCell {
         ingredientNameField.translatesAutoresizingMaskIntoConstraints = false
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        
         NSLayoutConstraint.activate([
             
             ingredientNameField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            ingredientNameField.trailingAnchor.constraint(equalTo: amountLabel.leadingAnchor, constant: -5),
+            ingredientNameField.trailingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
             ingredientNameField.heightAnchor.constraint(equalToConstant: 50),
             ingredientNameField.centerYAnchor.constraint(equalTo: centerYAnchor),
           
