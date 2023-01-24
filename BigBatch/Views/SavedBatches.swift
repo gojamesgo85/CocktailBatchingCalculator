@@ -10,28 +10,29 @@ import CoreData
 class SavedBatches: UITableViewController  {
     var cocktailList: [CocktailEntity] = []
     let cellID = "CellID"
-    let cocktail = Cocktail()
+    var cocktail = CocktailModel()
+    let colorPalette = ColorPalette()
     var colorNumber = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 20) ]
         navigationItem.standardAppearance = appearance
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         
     }
-        init(persistantStorage: StorageProvider) {
+    init(persistantStorage: StorageProvider) {
         StorageProvider.sharedStorageProvider = persistantStorage
         cocktailList = StorageProvider.sharedStorageProvider.getAllCocktails()
-
+        
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // reloadData() is only for tableviews collectionViews 
+    // reloadData() is only for tableviews collectionViews
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
         colorNumber = 0
@@ -40,13 +41,13 @@ class SavedBatches: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return StorageProvider.sharedStorageProvider.getAllCocktails().count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let colorArray = [cocktail.teal, cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen]
+        let colorArray = colorPalette.getSavedTableViewColors()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         let cocktailCell = StorageProvider.sharedStorageProvider.getAllCocktails()[indexPath.row]
@@ -61,62 +62,66 @@ class SavedBatches: UITableViewController  {
         cell.backgroundColor = colorArray[colorNumber]
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let listCocktail = StorageProvider.sharedStorageProvider.getAllCocktails()[indexPath.row]
-        print("Notes were sent and are \(listCocktail.notes ?? "")")
-        navigationController?.pushViewController(CocktailSpecsVC(name: listCocktail.cocktailName ?? "",
-                                                                 notes: listCocktail.notes ?? "",
-                                                                 ingredient1Name: listCocktail.ingredient1Name ?? "",
-                                                                 ingredient2Name: listCocktail.ingredient2Name ?? "",
-                                                                 ingredient3Name: listCocktail.ingredient3Name ?? "",
-                                                                 ingredient4Name: listCocktail.ingredient4Name ?? "",
-                                                                 ingredient5Name: listCocktail.ingredient5Name ?? "",
-                                                                 ingredient6Name: listCocktail.ingredient6Name ?? "",
-                                                                 ingredient7Name: listCocktail.ingredient7Name ?? "",
-                                                                 ingredient8Name: listCocktail.ingredient8Name ?? "",
-                                                                 ingredient9Name: listCocktail.ingredient9Name ?? "",
-                                                                 ingredient10Name: listCocktail.ingredient10Name ?? "",
-                                                                 ingredient11Name: listCocktail.ingredient11Name ?? "",
-                                                                 ingredient12Name: listCocktail.ingredient12Name ?? "",
-                                                                 ingredient13Name: listCocktail.ingredient13Name ?? "",
-                                                                 ingredient14Name: listCocktail.ingredient14Name ?? "",
-                                                                 ingredient15Name: listCocktail.ingredient15Name ?? "",
-                                                                 ingredient16Name: listCocktail.ingredient16Name ?? "",
-                                                                 ingredient1Amount: listCocktail.ingredient1Amount ?? "",
-                                                                 ingredient2Amount: listCocktail.ingredient2Amount ?? "",
-                                                                 ingredient3Amount: listCocktail.ingredient3Amount ?? "",
-                                                                 ingredient4Amount: listCocktail.ingredient4Amount ?? "",
-                                                                 ingredient5Amount: listCocktail.ingredient5Amount ?? "",
-                                                                 ingredient6Amount: listCocktail.ingredient6Amount ?? "",
-                                                                 ingredient7Amount: listCocktail.ingredient7Amount ?? "",
-                                                                 ingredient8Amount: listCocktail.ingredient8Amount ?? "",
-                                                                 ingredient9Amount: listCocktail.ingredient9Amount ?? "",
-                                                                 ingredient10Amount: listCocktail.ingredient10Amount ?? "",
-                                                                 ingredient11Amount: listCocktail.ingredient11Amount ?? "",
-                                                                 ingredient12Amount: listCocktail.ingredient12Amount ?? "",
-                                                                 ingredient13Amount: listCocktail.ingredient13Amount ?? "",
-                                                                 ingredient14Amount: listCocktail.ingredient14Amount ?? "",
-                                                                 ingredient15Amount: listCocktail.ingredient15Amount ?? "",
-                                                                 ingredient16Amount: listCocktail.ingredient16Amount ?? "",
-                                                                 dilutionTypeName: listCocktail.dilutionType ?? "",
-                                                                 dilutionPecentage: listCocktail.dilutionPercentage ?? "",
-                                                                 ABV1: listCocktail.aBV1 ?? "",
-                                                                 ABV2: listCocktail.aBV2 ?? "",
-                                                                 ABV3: listCocktail.aBV3 ?? "",
-                                                                 ABV4: listCocktail.aBV4 ?? "",
-                                                                 ABV5: listCocktail.aBV5 ?? "",
-                                                                 ABV6: listCocktail.aBV6 ?? "",
-                                                                 ABV7: listCocktail.aBV7 ?? "",
-                                                                 ABV8: listCocktail.aBV8 ?? "",
-                                                                 ABV9: listCocktail.aBV9 ?? "",
-                                                                 ABV10: listCocktail.aBV10 ?? "",
-                                                                 ABV11: listCocktail.aBV11 ?? "",
-                                                                 ABV12: listCocktail.aBV12 ?? "",
-                                                                 ABV13: listCocktail.aBV13 ?? "",
-                                                                 ABV14: listCocktail.aBV14 ?? "",
-                                                                 ABV15: listCocktail.aBV15 ?? "",
-                                                                 ABV16: listCocktail.aBV16 ?? ""), animated: true)
+        
+        cocktail.cocktailName = listCocktail.cocktailName ?? ""
+        cocktail.notes = listCocktail.notes ?? ""
+        cocktail.ingredient1Name = listCocktail.ingredient1Name ?? ""
+        cocktail.ingredient2Name = listCocktail.ingredient2Name ?? ""
+        cocktail.ingredient3Name = listCocktail.ingredient3Name ?? ""
+        cocktail.ingredient4Name = listCocktail.ingredient4Name ?? ""
+        cocktail.ingredient5Name = listCocktail.ingredient5Name ?? ""
+        cocktail.ingredient6Name = listCocktail.ingredient6Name ?? ""
+        cocktail.ingredient7Name = listCocktail.ingredient7Name ?? ""
+        cocktail.ingredient8Name = listCocktail.ingredient8Name ?? ""
+        cocktail.ingredient9Name = listCocktail.ingredient9Name ?? ""
+        cocktail.ingredient10Name = listCocktail.ingredient10Name ?? ""
+        cocktail.ingredient11Name = listCocktail.ingredient11Name ?? ""
+        cocktail.ingredient12Name = listCocktail.ingredient12Name ?? ""
+        cocktail.ingredient13Name = listCocktail.ingredient13Name ?? ""
+        cocktail.ingredient14Name = listCocktail.ingredient14Name ?? ""
+        cocktail.ingredient15Name = listCocktail.ingredient15Name ?? ""
+        cocktail.ingredient16Name = listCocktail.ingredient16Name ?? ""
+        cocktail.ozAmount1 = listCocktail.ingredient1Amount ?? ""
+        cocktail.ozAmount2 = listCocktail.ingredient2Amount ?? ""
+        cocktail.ozAmount3 = listCocktail.ingredient3Amount ?? ""
+        cocktail.ozAmount4 = listCocktail.ingredient4Amount ?? ""
+        cocktail.ozAmount5 = listCocktail.ingredient5Amount ?? ""
+        cocktail.ozAmount6 = listCocktail.ingredient6Amount ?? ""
+        cocktail.ozAmount7 = listCocktail.ingredient7Amount ?? ""
+        cocktail.ozAmount8 = listCocktail.ingredient8Amount ?? ""
+        cocktail.ozAmount9 = listCocktail.ingredient9Amount ?? ""
+        cocktail.ozAmount10 = listCocktail.ingredient10Amount ?? ""
+        cocktail.ozAmount11 = listCocktail.ingredient11Amount ?? ""
+        cocktail.ozAmount12 = listCocktail.ingredient12Amount ?? ""
+        cocktail.ozAmount13 = listCocktail.ingredient13Amount ?? ""
+        cocktail.ozAmount14 = listCocktail.ingredient14Amount ?? ""
+        cocktail.ozAmount15 = listCocktail.ingredient15Amount ?? ""
+        cocktail.ozAmount16 = listCocktail.ingredient16Amount ?? ""
+        cocktail.dilutionType = listCocktail.dilutionType ?? ""
+        cocktail.dilutionPercentage = listCocktail.dilutionPercentage ?? ""
+        cocktail.ABV1 = listCocktail.aBV1 ?? ""
+        cocktail.ABV2 = listCocktail.aBV2 ?? ""
+        cocktail.ABV3 = listCocktail.aBV3 ?? ""
+        cocktail.ABV4 = listCocktail.aBV4 ?? ""
+        cocktail.ABV5 = listCocktail.aBV5 ?? ""
+        cocktail.ABV6 = listCocktail.aBV6 ?? ""
+        cocktail.ABV7 = listCocktail.aBV7 ?? ""
+        cocktail.ABV8 = listCocktail.aBV8 ?? ""
+        cocktail.ABV9 = listCocktail.aBV9 ?? ""
+        cocktail.ABV10 = listCocktail.aBV10 ?? ""
+        cocktail.ABV11 = listCocktail.aBV11 ?? ""
+        cocktail.ABV12 = listCocktail.aBV12 ?? ""
+        cocktail.ABV13 = listCocktail.aBV13 ?? ""
+        cocktail.ABV14 = listCocktail.aBV14 ?? ""
+        cocktail.ABV15 = listCocktail.aBV15 ?? ""
+        cocktail.ABV16 = listCocktail.aBV16 ?? ""
+
+        navigationController?.pushViewController(CocktailSpecsVC(cocktailModel: cocktail), animated: true)
+        
+
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

@@ -10,35 +10,17 @@ import UIKit
 class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
    
     let alert = Alert()
-    
-    
-    
-    func rearrangeArray() {
-        
-        for i in 0..<cocktailIgredientsArray.count {
-            if cocktailIgredientsArray[i].cellSwitch == 1 {
-                let element = cocktailIgredientsArray.remove(at: i)
-                cocktailIgredientsArray.insert(element, at: cocktailIgredientsArray.count)
-                ingredientsTableView.reloadData()
-            }
-        }
-    }
-    
-    func addNotes(notes: String) {
-        cocktailNotes = notes
-        print(cocktailNotes)
-    }
-    var cellTypeSwitch = 0
+
     let labelHeight = CGFloat(40)
-    let cocktail = Cocktail()
-    
+    var cocktail = CocktailModel()
+    let colorPalette = ColorPalette()
     let cocktailNameField = CocktailIngredientNameTF()
     let notesButton = BatchButton()
     let addAnIngredientButton = BatchButton()
     let batchButton = BatchButton()
     var finalABVCalculation = TypeLabel()
     let ingredientsTableView = UITableView()
-    
+
     var cocktailIgredientsArray: [CocktailIngredientsForCell] = []
     var cocktailIngredient = CocktailIngredientsForCell()
     let numberOfCocktailsTextField = CocktailIngredientAmountTF()
@@ -47,67 +29,13 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var numberOfIngredientRows = 0
     var numberOfDilutionRows = 0
     var cocktailNotes = ""
-    
-    
-    init(name: String,
-         notes: String,
-         ingredient1Name: String,
-         ingredient2Name: String,
-         ingredient3Name: String,
-         ingredient4Name: String,
-         ingredient5Name: String,
-         ingredient6Name: String,
-         ingredient7Name: String,
-         ingredient8Name: String,
-         ingredient9Name: String,
-         ingredient10Name: String,
-         ingredient11Name: String,
-         ingredient12Name: String,
-         ingredient13Name: String,
-         ingredient14Name: String,
-         ingredient15Name: String,
-         ingredient16Name: String,
-         ingredient1Amount: String,
-         ingredient2Amount: String,
-         ingredient3Amount: String,
-         ingredient4Amount: String,
-         ingredient5Amount: String,
-         ingredient6Amount: String,
-         ingredient7Amount: String,
-         ingredient8Amount: String,
-         ingredient9Amount: String,
-         ingredient10Amount: String,
-         ingredient11Amount: String,
-         ingredient12Amount: String,
-         ingredient13Amount: String,
-         ingredient14Amount: String,
-         ingredient15Amount: String,
-         ingredient16Amount: String,
-         dilutionTypeName: String,
-         dilutionPecentage: String,
-         ABV1: String,
-         ABV2: String,
-         ABV3: String,
-         ABV4: String,
-         ABV5: String,
-         ABV6: String,
-         ABV7: String,
-         ABV8: String,
-         ABV9: String,
-         ABV10: String,
-         ABV11: String,
-         ABV12: String,
-         ABV13: String,
-         ABV14: String,
-         ABV15: String,
-         ABV16: String) {
 
-        let namesArray = [ingredient1Name, ingredient2Name,ingredient3Name,ingredient4Name, ingredient5Name,ingredient6Name,ingredient7Name,ingredient8Name,ingredient9Name,ingredient10Name,ingredient11Name,ingredient12Name,ingredient13Name,ingredient14Name,ingredient15Name,ingredient16Name]
-        let amountsArray = [ingredient1Amount,ingredient2Amount,ingredient3Amount,ingredient4Amount,ingredient5Amount,ingredient6Amount,ingredient7Amount,ingredient8Amount,ingredient9Amount,ingredient10Amount,ingredient11Amount,ingredient12Amount,ingredient13Amount,ingredient14Amount,ingredient15Amount,ingredient16Amount]
-        let abvArray = [ABV1,ABV2,ABV3,ABV4,ABV5,ABV6,ABV7,ABV8,ABV9,ABV10,ABV11,ABV12,ABV13,ABV14,ABV15,ABV16]
-
-        //notes = cocktailNotes
-        cocktailNameField.text = name
+    init(cocktailModel: CocktailModel){
+        self.cocktail = cocktailModel
+        let namesArray = cocktail.getNames()
+        let amountsArray = cocktail.getAmounts()
+        let abvArray = cocktail.getABV()
+        cocktailNameField.text = cocktail.cocktailName
         for i in 0...15{
             if namesArray[i] != "" {
                 cocktailIngredient.name = namesArray[i]
@@ -119,20 +47,20 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 break
             }
         }
-        cocktailNotes = notes
-        if dilutionTypeName != "" {
-            cocktailIngredient.name = dilutionTypeName
-            cocktailIngredient.dilutionPercentageTextField = dilutionPecentage
+        cocktailNotes = cocktail.notes
+        if cocktail.dilutionType != "" {
+            cocktailIngredient.name = cocktail.dilutionType
+            cocktailIngredient.dilutionPercentageTextField = cocktail.dilutionPercentage
             cocktailIngredient.cellSwitch = 1
             cocktailIgredientsArray.append(cocktailIngredient)
         }
         
         
         ingredientsTableView.reloadData()
-
+        
         super.init(nibName: nil, bundle: nil)
-
     }
+
     
     init() {
         
@@ -149,7 +77,10 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 20) ]
         navigationItem.standardAppearance = appearance
-        configureViews()
+        setupKeyboardHiding()
+        configureTopAnchorFields()
+        configureBottomAnchorButtons()
+        configureTableView()
         
         CalculateABV()
         ingredientsTableView.register(CocktailSpecsTableViewCell.self, forCellReuseIdentifier: CocktailSpecsTableViewCell.coktailIngredientIdentifier)
@@ -166,18 +97,7 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     override func viewWillAppear(_ animated: Bool) {
         refreshBackground()
-        
         super.viewWillAppear(animated)
-  
-    }
-    
-    
-    func configureViews() {
-        setupKeyboardHiding()
-        configureTopAnchorFields()
-        configureBottomAnchorButtons()
-        configureTableView()
-        
     }
     
     func refreshBackground() {
@@ -186,7 +106,277 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         
     }
+    func rearrangeArray() {
+        
+        for i in 0..<cocktailIgredientsArray.count {
+            if cocktailIgredientsArray[i].cellSwitch == 1 {
+                let element = cocktailIgredientsArray.remove(at: i)
+                cocktailIgredientsArray.insert(element, at: cocktailIgredientsArray.count)
+                ingredientsTableView.reloadData()
+            }
+        }
+    }
     
+    func addNotes(notes: String) {
+        cocktailNotes = notes
+        
+    }
+   
+    @objc func BatchedView() {
+ 
+        guard let cocktailName = cocktailNameField.text,
+              let initialCocktialCount = numberOfCocktailsTextField.text else { return }
+
+        var cocktailOzAmounts = cocktail.getAmounts()
+        var cocktailIngredientsNames = cocktail.getNames()
+
+
+        cocktail.cocktailName = cocktailName
+        cocktail.initialCocktailsNumber = initialCocktialCount
+        
+        if initialCocktialCount == "" {
+            cocktail.initialCocktailsNumber = "1.0"
+        }
+            
+        for i in 0..<cocktailIgredientsArray.count {
+            if cocktailIgredientsArray[i].cellSwitch == 0 {
+                cocktailIngredientsNames[i] = cocktailIgredientsArray[i].name
+                cocktailOzAmounts[i] = cocktailIgredientsArray[i].amount
+            } else {
+                cocktail.dilutionPercentage = cocktailIgredientsArray[i].dilutionPercentageTextField
+                cocktail.dilutionType = cocktailIgredientsArray[i].name
+               
+            }
+        }
+        
+        cocktail.ingredient1Name = cocktailIngredientsNames[0]
+        cocktail.ingredient2Name = cocktailIngredientsNames[1]
+        cocktail.ingredient3Name = cocktailIngredientsNames[2]
+        cocktail.ingredient4Name = cocktailIngredientsNames[3]
+        cocktail.ingredient5Name = cocktailIngredientsNames[4]
+        cocktail.ingredient6Name = cocktailIngredientsNames[5]
+        cocktail.ingredient7Name = cocktailIngredientsNames[6]
+        cocktail.ingredient8Name = cocktailIngredientsNames[7]
+        cocktail.ingredient9Name = cocktailIngredientsNames[8]
+        cocktail.ingredient10Name = cocktailIngredientsNames[9]
+        cocktail.ingredient11Name = cocktailIngredientsNames[10]
+        cocktail.ingredient12Name = cocktailIngredientsNames[11]
+        cocktail.ingredient13Name = cocktailIngredientsNames[12]
+        cocktail.ingredient14Name = cocktailIngredientsNames[13]
+        cocktail.ingredient15Name = cocktailIngredientsNames[14]
+        cocktail.ingredient16Name = cocktailIngredientsNames[15]
+        cocktail.ozAmount1 = cocktailOzAmounts[0]
+        cocktail.ozAmount2 = cocktailOzAmounts[1]
+        cocktail.ozAmount3 = cocktailOzAmounts[2]
+        cocktail.ozAmount4 = cocktailOzAmounts[3]
+        cocktail.ozAmount5 = cocktailOzAmounts[4]
+        cocktail.ozAmount6 = cocktailOzAmounts[5]
+        cocktail.ozAmount7 = cocktailOzAmounts[6]
+        cocktail.ozAmount8 = cocktailOzAmounts[7]
+        cocktail.ozAmount9 = cocktailOzAmounts[8]
+        cocktail.ozAmount10 = cocktailOzAmounts[9]
+        cocktail.ozAmount11 = cocktailOzAmounts[10]
+        cocktail.ozAmount12 = cocktailOzAmounts[11]
+        cocktail.ozAmount13 = cocktailOzAmounts[12]
+        cocktail.ozAmount14 = cocktailOzAmounts[13]
+        cocktail.ozAmount15 = cocktailOzAmounts[14]
+        cocktail.ozAmount16 = cocktailOzAmounts[15]
+        
+        navigationController?.pushViewController(BatchedVC1(cocktail: cocktail), animated: true)
+        
+        
+    }
+    
+    @objc func CalculateABV() {
+        var aBVModel = ABVModel()
+        var pureAlcoholVolumeArray = aBVModel.getPureAlcoholAmounts()
+        var aBVArray = aBVModel.getABVs()
+        for i in 0..<cocktailIgredientsArray.count {
+            aBVModel.preDilutionVolume += Double(cocktailIgredientsArray[i].amount) ?? 0.0
+            aBVArray[i] = Double(cocktailIgredientsArray[i].abv) ?? 0.0
+            aBVArray[i] = aBVArray[i] / 100
+            pureAlcoholVolumeArray[i] = Double(cocktailIgredientsArray[i].amount) ?? 0.0
+            pureAlcoholVolumeArray[i] = pureAlcoholVolumeArray[i] * aBVArray[i]
+            aBVModel.totalPureAlcohol += pureAlcoholVolumeArray[i]
+            if cocktailIgredientsArray[i].cellSwitch == 1 {
+                let dilutionPercentageWholeNumber = Double(cocktailIgredientsArray[i].dilutionPercentageTextField) ?? 0.0
+                aBVModel.dilutionPercentage = dilutionPercentageWholeNumber / 100.0
+            }
+        }
+        
+        let dilutionToAddToPreDilution = aBVModel.preDilutionVolume * aBVModel.dilutionPercentage
+        let totalVolumeForABVCalculation = aBVModel.preDilutionVolume + dilutionToAddToPreDilution
+        let preABVCalculation = aBVModel.totalPureAlcohol / totalVolumeForABVCalculation
+        let aBVCalculation = preABVCalculation * 100
+        
+        if cocktailIgredientsArray.count == 0 {
+            finalABVCalculation.text = "Your ABV is 0%"
+        } else {
+            finalABVCalculation.text = "Your ABV is \(aBVCalculation.truncate(places: 2))%"
+        }
+ 
+    }
+    
+    @objc func addCocktailToSavedCocktailsArray() {
+        
+        
+        var percentageArray = cocktail.getABV()
+        var ozStringArray = cocktail.getAmounts()
+        var ingredientsArray = cocktail.getNames()
+        
+        for i in 0..<cocktailIgredientsArray.count {
+            if cocktailIgredientsArray[i].cellSwitch == 1 {
+                cocktail.dilutionType = cocktailIgredientsArray[i].name
+                cocktail.dilutionPercentage = cocktailIgredientsArray[i].dilutionPercentageTextField
+            }
+        }
+        
+        guard let cocktailName = cocktailNameField.text else {
+            print("oops")
+            return
+        }
+        
+        for i in 0..<cocktailIgredientsArray.count {
+            if cocktailIgredientsArray[i].cellSwitch == 0 {
+                ingredientsArray[i] = cocktailIgredientsArray[i].name
+                percentageArray[i] = cocktailIgredientsArray[i].abv
+                ozStringArray[i] = cocktailIgredientsArray[i].amount
+            }
+        }
+
+        StorageProvider.sharedStorageProvider.saveCocktail(named: cocktailName,
+                                                           notes: cocktailNotes,
+                                                           ingredient1Name: ingredientsArray[0],
+                                                           ingredient2Name: ingredientsArray[1],
+                                                           ingredient3Name: ingredientsArray[2],
+                                                           ingredient4Name: ingredientsArray[3],
+                                                           ingredient5Name: ingredientsArray[4],
+                                                           ingredient6Name: ingredientsArray[5],
+                                                           ingredient7Name: ingredientsArray[6],
+                                                           ingredient8Name: ingredientsArray[7],
+                                                           ingredient9Name: ingredientsArray[8],
+                                                           ingredient10Name: ingredientsArray[9],
+                                                           ingredient11Name: ingredientsArray[10],
+                                                           ingredient12Name: ingredientsArray[11],
+                                                           ingredient13Name: ingredientsArray[12],
+                                                           ingredient14Name: ingredientsArray[13],
+                                                           ingredient15Name: ingredientsArray[14],
+                                                           ingredient16Name: ingredientsArray[15],
+                                                           ingredient1Amount: ozStringArray[0],
+                                                           ingredient2Amount: ozStringArray[1],
+                                                           ingredient3Amount: ozStringArray[2],
+                                                           ingredient4Amount: ozStringArray[3],
+                                                           ingredient5Amount: ozStringArray[4],
+                                                           ingredient6Amount: ozStringArray[5],
+                                                           ingredient7Amount: ozStringArray[6],
+                                                           ingredient8Amount: ozStringArray[7],
+                                                           ingredient9Amount: ozStringArray[8],
+                                                           ingredient10Amount: ozStringArray[9],
+                                                           ingredient11Amount: ozStringArray[10],
+                                                           ingredient12Amount: ozStringArray[11],
+                                                           ingredient13Amount: ozStringArray[12],
+                                                           ingredient14Amount: ozStringArray[13],
+                                                           ingredient15Amount: ozStringArray[14],
+                                                           ingredient16Amount: ozStringArray[15],
+                                                           dilutionTypeName: cocktail.dilutionType,
+                                                           dilutionPecentage: cocktail.dilutionPercentage,
+                                                           ABV1: percentageArray[0],
+                                                           ABV2: percentageArray[1],
+                                                           ABV3: percentageArray[2],
+                                                           ABV4: percentageArray[3],
+                                                           ABV5: percentageArray[4],
+                                                           ABV6: percentageArray[5],
+                                                           ABV7: percentageArray[6],
+                                                           ABV8: percentageArray[7],
+                                                           ABV9: percentageArray[8],
+                                                           ABV10: percentageArray[9],
+                                                           ABV11: percentageArray[10],
+                                                           ABV12: percentageArray[11],
+                                                           ABV13: percentageArray[12],
+                                                           ABV14: percentageArray[13],
+                                                           ABV15: percentageArray[14],
+                                                           ABV16: percentageArray[15])
+        
+        
+        navigationController?.pushViewController(SavedBatches(persistantStorage: StorageProvider.sharedStorageProvider), animated: true)
+
+    }
+    
+    @objc func clearPageData() {
+        cocktailNameField.text = ""
+        cocktailIgredientsArray = []
+        numberOfCocktailsTextField.text = ""
+        ingredientsTableView.reloadData()
+        CalculateABV()
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return cocktailIgredientsArray.count
+      
+            }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell1 = ingredientsTableView.dequeueReusableCell(withIdentifier: CocktailSpecsTableViewCell.coktailIngredientIdentifier , for: indexPath) as! CocktailSpecsTableViewCell
+        let cell2 = ingredientsTableView.dequeueReusableCell(withIdentifier: DilutionTableViewCell.dilutionIdentifier, for: indexPath) as! DilutionTableViewCell
+        let colorArray = colorPalette.getTableViewColors()
+     
+        cell1.ozTextField.tag = indexPath.row
+        cell1.abvTextField.tag = indexPath.row
+        cell2.percentTextField.tag = indexPath.row
+        cell2.delegate = self
+        cell1.delegate = self
+        
+        
+        if cocktailIgredientsArray[indexPath.row].cellSwitch == 0 {
+            cell1.specsIngredientLabel.text = "oz. \(cocktailIgredientsArray[indexPath.row].name) "
+            cell1.ozTextField.text = cocktailIgredientsArray[indexPath.row].amount
+            cell1.abvTextField.text = cocktailIgredientsArray[indexPath.row].abv
+            cell1.backgroundColor = colorArray[indexPath.row]
+           
+            //cell1.backgroundColor = UIColor.clear
+            return cell1
+        }
+        
+        if cocktailIgredientsArray[indexPath.row].cellSwitch == 1 {
+            cell2.percentLable.text = "% dilution with \(cocktailIgredientsArray[indexPath.row].name)"
+            cell2.percentTextField.text = cocktailIgredientsArray[indexPath.row].dilutionPercentageTextField
+            cell2.backgroundColor = colorPalette.teal
+            return cell2
+        }
+        
+        return cell1
+        
+    }
+    
+    
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+       return .delete
+       
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            cocktailIgredientsArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .right)
+            CalculateABV()
+            tableView.endUpdates()
+        }
+        
+    }
+    @objc func pushNotesVC() {
+        let pushNotesVC = NotesVC(notes: cocktailNotes)
+        pushNotesVC.addNotesDelegate = self
+        self.present(pushNotesVC, animated: true)
+    }
+    
+    @objc func pushModalIngredients() {
+        let addIngredientVC = AddIngredientVC()
+        addIngredientVC.addIngredientDelegate = self
+        self.present(addIngredientVC, animated: true)
+    }
     
     func configureTopAnchorFields() {
         view.addSubview(cocktailNameField)
@@ -264,7 +454,7 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         view.addSubview(ingredientsTableView)
         ingredientsTableView.layer.borderWidth = 1
         ingredientsTableView.layer.borderColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        ingredientsTableView.layer.cornerRadius = 10 
+        ingredientsTableView.layer.cornerRadius = 10
         ingredientsTableView.translatesAutoresizingMaskIntoConstraints = false
         ingredientsTableView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.0)
         NSLayoutConstraint.activate([
@@ -276,375 +466,6 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
         ])
         
-        
-    }
-    
-    @objc func pushNotesVC() {
-        
-        let pushNotesVC = NotesVC(notes: cocktailNotes)
-        pushNotesVC.addNotesDelegate = self
-        self.present(pushNotesVC, animated: true)
-    }
-    
-    @objc func pushModalIngredients() {
-        
-        let addIngredientVC = AddIngredientVC()
-        addIngredientVC.addIngredientDelegate = self
-        self.present(addIngredientVC, animated: true)
-        
-    }
-    
-    @objc func BatchedView() {
-        
-        
-        var cocktailModel = Cocktail()
-        
-        
-        
-        
-        var modelOzAmountArray = [cocktailModel.modelOzAmount1, cocktailModel.modelOzAmount2,cocktailModel.modelOzAmount3,cocktailModel.modelOzAmount4,cocktailModel.modelOzAmount5,cocktailModel.modelOzAmount6,cocktailModel.modelOzAmount7,cocktailModel.modelOzAmount8,cocktailModel.modelOzAmount9,cocktailModel.modelOzAmount10,cocktailModel.modelOzAmount11,cocktailModel.modelOzAmount12,cocktailModel.modelOzAmount13,cocktailModel.modelOzAmount14,cocktailModel.modelOzAmount15,cocktailModel.modelOzAmount16]
-
-        var modelIngredientsArray = [cocktailModel.modelIngredient1Name, cocktailModel.modelIngredient2Name, cocktailModel.modelIngredient3Name,cocktailModel.modelIngredient4Name, cocktailModel.modelIngredient5Name, cocktailModel.modelIngredient6Name, cocktailModel.modelIngredient7Name, cocktailModel.modelIngredient8Name, cocktailModel.modelIngredient9Name, cocktailModel.modelIngredient10Name, cocktailModel.modelIngredient11Name, cocktailModel.modelIngredient12Name, cocktailModel.modelIngredient13Name, cocktailModel.modelIngredient14Name, cocktailModel.modelIngredient15Name, cocktailModel.modelIngredient16Name]
-
-        
-        
-        guard let cocktailName = cocktailNameField.text,
-              let initialCocktialCount = numberOfCocktailsTextField.text else { return }
-        
-        cocktailModel.savedCocktailName = cocktailName
-        cocktailModel.modelInitialCocktailsNumber = initialCocktialCount
-        
-        if initialCocktialCount == "" {
-            cocktailModel.modelInitialCocktailsNumber = "1.0"
-        }
-            
-        
-                
-        for i in 0..<cocktailIgredientsArray.count {
-            if cocktailIgredientsArray[i].cellSwitch == 0 {
-                modelIngredientsArray[i] = cocktailIgredientsArray[i].name
-                modelOzAmountArray[i] = cocktailIgredientsArray[i].amount
-            } else {
-                
-                if cocktailIgredientsArray[i].cellSwitch == 1 {
-                    
-                    cocktailModel.modelDilutionPercentage = cocktailIgredientsArray[i].dilutionPercentageTextField
-                    cocktailModel.modelDilutionType = cocktailIgredientsArray[i].name
-                }
-            }
-  
-        }
-        
-        cocktailModel.modelIngredient1Name = modelIngredientsArray[0]
-        cocktailModel.modelIngredient2Name = modelIngredientsArray[1]
-        cocktailModel.modelIngredient3Name = modelIngredientsArray[2]
-        cocktailModel.modelIngredient4Name = modelIngredientsArray[3]
-        cocktailModel.modelIngredient5Name = modelIngredientsArray[4]
-        cocktailModel.modelIngredient6Name = modelIngredientsArray[5]
-        cocktailModel.modelIngredient7Name = modelIngredientsArray[6]
-        cocktailModel.modelIngredient8Name = modelIngredientsArray[7]
-        cocktailModel.modelIngredient9Name = modelIngredientsArray[8]
-        cocktailModel.modelIngredient10Name = modelIngredientsArray[9]
-        cocktailModel.modelIngredient11Name = modelIngredientsArray[10]
-        cocktailModel.modelIngredient12Name = modelIngredientsArray[11]
-        cocktailModel.modelIngredient13Name = modelIngredientsArray[12]
-        cocktailModel.modelIngredient14Name = modelIngredientsArray[13]
-        cocktailModel.modelIngredient15Name = modelIngredientsArray[14]
-        cocktailModel.modelIngredient16Name = modelIngredientsArray[15]
-        
-        cocktailModel.modelOzAmount1 = modelOzAmountArray[0]
-        cocktailModel.modelOzAmount2 = modelOzAmountArray[1]
-        cocktailModel.modelOzAmount3 = modelOzAmountArray[2]
-        cocktailModel.modelOzAmount4 = modelOzAmountArray[3]
-        cocktailModel.modelOzAmount5 = modelOzAmountArray[4]
-        cocktailModel.modelOzAmount6 = modelOzAmountArray[5]
-        cocktailModel.modelOzAmount7 = modelOzAmountArray[6]
-        cocktailModel.modelOzAmount8 = modelOzAmountArray[7]
-        cocktailModel.modelOzAmount9 = modelOzAmountArray[8]
-        cocktailModel.modelOzAmount10 = modelOzAmountArray[9]
-        cocktailModel.modelOzAmount11 = modelOzAmountArray[10]
-        cocktailModel.modelOzAmount12 = modelOzAmountArray[11]
-        cocktailModel.modelOzAmount13 = modelOzAmountArray[12]
-        cocktailModel.modelOzAmount14 = modelOzAmountArray[13]
-        cocktailModel.modelOzAmount15 = modelOzAmountArray[14]
-        cocktailModel.modelOzAmount16 = modelOzAmountArray[15]
-        
-        
-        
-        
-        
-        navigationController?.pushViewController(BatchedVC1(cocktail: cocktailModel), animated: true)
-        
-    }
-    
-    @objc func CalculateABV() {
-        var preDilutionVolume = 0.0
-        var dilutionPercentage = 0.0
-        
-        let i1ABV = 0.0
-        let i2ABV = 0.0
-        let i3ABV = 0.0
-        let i4ABV = 0.0
-        let i5ABV = 0.0
-        let i6ABV = 0.0
-        let i7ABV = 0.0
-        let i8ABV = 0.0
-        let i9ABV = 0.0
-        let i10ABV = 0.0
-        let i11ABV = 0.0
-        let i12ABV = 0.0
-        let i13ABV = 0.0
-        let i14ABV = 0.0
-        let i15ABV = 0.0
-        let i16ABV = 0.0
-        
-        let pureAlcoholVolume1 = 0.0
-        let pureAlcoholVolume2 = 0.0
-        let pureAlcoholVolume3 = 0.0
-        let pureAlcoholVolume4 = 0.0
-        let pureAlcoholVolume5 = 0.0
-        let pureAlcoholVolume6 = 0.0
-        let pureAlcoholVolume7 = 0.0
-        let pureAlcoholVolume8 = 0.0
-        let pureAlcoholVolume9 = 0.0
-        let pureAlcoholVolume10 = 0.0
-        let pureAlcoholVolume11 = 0.0
-        let pureAlcoholVolume12 = 0.0
-        let pureAlcoholVolume13 = 0.0
-        let pureAlcoholVolume14 = 0.0
-        let pureAlcoholVolume15 = 0.0
-        let pureAlcoholVolume16 = 0.0
-        
-        var pureAlcoholVolumeArray = [pureAlcoholVolume1,pureAlcoholVolume2,pureAlcoholVolume3,pureAlcoholVolume4,pureAlcoholVolume5,pureAlcoholVolume6,pureAlcoholVolume7,pureAlcoholVolume8,pureAlcoholVolume9,pureAlcoholVolume10,pureAlcoholVolume11,pureAlcoholVolume12,pureAlcoholVolume13,pureAlcoholVolume14,pureAlcoholVolume15,pureAlcoholVolume16]
-        var totalPureAlcohol = 0.0
-        
-        var aBVArray = [i1ABV,i2ABV,i3ABV,i4ABV,i5ABV,i6ABV,i7ABV,i8ABV,i9ABV,i10ABV,i11ABV,i12ABV,i13ABV,i14ABV,i15ABV,i16ABV]
-     
-        for i in 0..<cocktailIgredientsArray.count {
-           
-            preDilutionVolume += Double(cocktailIgredientsArray[i].amount) ?? 0.0
-            aBVArray[i] = Double(cocktailIgredientsArray[i].abv) ?? 0.0
-            aBVArray[i] = aBVArray[i] / 100
-            pureAlcoholVolumeArray[i] = Double(cocktailIgredientsArray[i].amount) ?? 0.0
-            pureAlcoholVolumeArray[i] = pureAlcoholVolumeArray[i] * aBVArray[i]
-            totalPureAlcohol += pureAlcoholVolumeArray[i]
-            if cocktailIgredientsArray[i].cellSwitch == 1 {
-                dilutionPercentage = Double(cocktailIgredientsArray[i].dilutionPercentageTextField) ?? 0.0
-            }
-        }
-        let actualDilutionPercentage = dilutionPercentage / 100.0
-        let dilutionToAddToPreDilution = preDilutionVolume * actualDilutionPercentage
-        let totalVolumeForABVCalculation = preDilutionVolume + dilutionToAddToPreDilution
-  
-        let preABVCalculation = totalPureAlcohol / totalVolumeForABVCalculation
-        let aBVCalculation = preABVCalculation * 100
-        
-        if cocktailIgredientsArray.count == 0 {
-            finalABVCalculation.text = "Your ABV is 0%"
-        } else {
-            finalABVCalculation.text = "Your ABV is \(aBVCalculation.truncate(places: 2))%"
-        }
-        
-        
-    }
-    
-    @objc func addCocktailToSavedCocktailsArray() {
-        
-        var dilutionTypeName = ""
-        var dilutionPercentage = ""
-        let ingredients1 = ""
-        let ingredients2 = ""
-        let ingredients3 = ""
-        let ingredients4 = ""
-        let ingredients5 = ""
-        let ingredients6 = ""
-        let ingredients7 = ""
-        let ingredients8 = ""
-        let ingredients9 = ""
-        let ingredients10 = ""
-        let ingredients11 = ""
-        let ingredients12 = ""
-        let ingredients13 = ""
-        let ingredients14 = ""
-        let ingredients15 = ""
-        let ingredients16 = ""
-        let oz1String = ""
-        let oz2String = ""
-        let oz3String = ""
-        let oz4String = ""
-        let oz5String = ""
-        let oz6String = ""
-        let oz7String = ""
-        let oz8String = ""
-        let oz9String = ""
-        let oz10String = ""
-        let oz11String = ""
-        let oz12String = ""
-        let oz13String = ""
-        let oz14String = ""
-        let oz15String = ""
-        let oz16String = ""
-        let alcoholPercentage1 = ""
-        let alcoholPercentage2 = ""
-        let alcoholPercentage3 = ""
-        let alcoholPercentage4 = ""
-        let alcoholPercentage5 = ""
-        let alcoholPercentage6 = ""
-        let alcoholPercentage7 = ""
-        let alcoholPercentage8 = ""
-        let alcoholPercentage9 = ""
-        let alcoholPercentage10 = ""
-        let alcoholPercentage11 = ""
-        let alcoholPercentage12 = ""
-        let alcoholPercentage13 = ""
-        let alcoholPercentage14 = ""
-        let alcoholPercentage15 = ""
-        let alcoholPercentage16 = ""
-        
-        var percentageArray = [alcoholPercentage1,alcoholPercentage2, alcoholPercentage3, alcoholPercentage4, alcoholPercentage5, alcoholPercentage6, alcoholPercentage7, alcoholPercentage8, alcoholPercentage9, alcoholPercentage10, alcoholPercentage11, alcoholPercentage12, alcoholPercentage13, alcoholPercentage14, alcoholPercentage15, alcoholPercentage16]
-        var ozStringArray = [oz1String,oz2String,oz3String,oz4String,oz5String,oz6String,oz7String,oz8String,oz9String,oz10String,oz11String,oz12String,oz13String,oz14String,oz15String,oz16String]
-        var ingredientsArray = [ingredients1,ingredients2,ingredients3,ingredients4,ingredients5,ingredients6,ingredients7,ingredients8,ingredients9,ingredients10,ingredients11,ingredients12,ingredients13,ingredients14,ingredients15,ingredients16]
-        
-        for i in 0..<cocktailIgredientsArray.count {
-            if cocktailIgredientsArray[i].cellSwitch == 1 {
-                dilutionTypeName = cocktailIgredientsArray[i].name
-                dilutionPercentage = cocktailIgredientsArray[i].dilutionPercentageTextField
-            }
-        }
-        
-        guard let cocktailName = cocktailNameField.text else {
-            print("oops")
-            return
-        }
-        
-        for i in 0..<cocktailIgredientsArray.count {
-            if cocktailIgredientsArray[i].cellSwitch == 0 {
-                ingredientsArray[i] = cocktailIgredientsArray[i].name
-                percentageArray[i] = cocktailIgredientsArray[i].abv
-                ozStringArray[i] = cocktailIgredientsArray[i].amount
-            }
-        }
-
-        StorageProvider.sharedStorageProvider.saveCocktail(named: cocktailName,
-                                                           notes: cocktailNotes,
-                                                           ingredient1Name: ingredientsArray[0],
-                                                           ingredient2Name: ingredientsArray[1],
-                                                           ingredient3Name: ingredientsArray[2],
-                                                           ingredient4Name: ingredientsArray[3],
-                                                           ingredient5Name: ingredientsArray[4],
-                                                           ingredient6Name: ingredientsArray[5],
-                                                           ingredient7Name: ingredientsArray[6],
-                                                           ingredient8Name: ingredientsArray[7],
-                                                           ingredient9Name: ingredientsArray[8],
-                                                           ingredient10Name: ingredientsArray[9],
-                                                           ingredient11Name: ingredientsArray[10],
-                                                           ingredient12Name: ingredientsArray[11],
-                                                           ingredient13Name: ingredientsArray[12],
-                                                           ingredient14Name: ingredientsArray[13],
-                                                           ingredient15Name: ingredientsArray[14],
-                                                           ingredient16Name: ingredientsArray[15],
-                                                           ingredient1Amount: ozStringArray[0],
-                                                           ingredient2Amount: ozStringArray[1],
-                                                           ingredient3Amount: ozStringArray[2],
-                                                           ingredient4Amount: ozStringArray[3],
-                                                           ingredient5Amount: ozStringArray[4],
-                                                           ingredient6Amount: ozStringArray[5],
-                                                           ingredient7Amount: ozStringArray[6],
-                                                           ingredient8Amount: ozStringArray[7],
-                                                           ingredient9Amount: ozStringArray[8],
-                                                           ingredient10Amount: ozStringArray[9],
-                                                           ingredient11Amount: ozStringArray[10],
-                                                           ingredient12Amount: ozStringArray[11],
-                                                           ingredient13Amount: ozStringArray[12],
-                                                           ingredient14Amount: ozStringArray[13],
-                                                           ingredient15Amount: ozStringArray[14],
-                                                           ingredient16Amount: ozStringArray[15],
-                                                           dilutionTypeName: dilutionTypeName,
-                                                           dilutionPecentage: dilutionPercentage,
-                                                           ABV1: percentageArray[0],
-                                                           ABV2: percentageArray[1],
-                                                           ABV3: percentageArray[2],
-                                                           ABV4: percentageArray[3],
-                                                           ABV5: percentageArray[4],
-                                                           ABV6: percentageArray[5],
-                                                           ABV7: percentageArray[6],
-                                                           ABV8: percentageArray[7],
-                                                           ABV9: percentageArray[8],
-                                                           ABV10: percentageArray[9],
-                                                           ABV11: percentageArray[10],
-                                                           ABV12: percentageArray[11],
-                                                           ABV13: percentageArray[12],
-                                                           ABV14: percentageArray[13],
-                                                           ABV15: percentageArray[14],
-                                                           ABV16: percentageArray[15])
-        
-        print("the cocktail nots were saved and are: \(cocktailNotes)")
-        navigationController?.pushViewController(SavedBatches(persistantStorage: StorageProvider.sharedStorageProvider), animated: true)
-
-    }
-    
-    @objc func clearPageData() {
-        cocktailNameField.text = ""
-        cocktailIgredientsArray = []
-        numberOfCocktailsTextField.text = ""
-        ingredientsTableView.reloadData()
-        CalculateABV()
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return cocktailIgredientsArray.count
-      
-            }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell1 = ingredientsTableView.dequeueReusableCell(withIdentifier: CocktailSpecsTableViewCell.coktailIngredientIdentifier , for: indexPath) as! CocktailSpecsTableViewCell
-        let cell2 = ingredientsTableView.dequeueReusableCell(withIdentifier: DilutionTableViewCell.dilutionIdentifier, for: indexPath) as! DilutionTableViewCell
-        let colorArray = [cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue, cocktail.red, cocktail.orange, cocktail.lightOrange, cocktail.forestGreen, cocktail.blue ]
-     
-        cell1.ozTextField.tag = indexPath.row
-        cell1.abvTextField.tag = indexPath.row
-        cell2.percentTextField.tag = indexPath.row
-        cell2.delegate = self
-        cell1.delegate = self
-        
-        
-        if cocktailIgredientsArray[indexPath.row].cellSwitch == 0 {
-            cell1.specsIngredientLabel.text = "oz. \(cocktailIgredientsArray[indexPath.row].name) "
-            cell1.ozTextField.text = cocktailIgredientsArray[indexPath.row].amount
-            cell1.abvTextField.text = cocktailIgredientsArray[indexPath.row].abv
-            cell1.backgroundColor = colorArray[indexPath.row]
-           
-            //cell1.backgroundColor = UIColor.clear
-            return cell1
-        }
-        
-        if cocktailIgredientsArray[indexPath.row].cellSwitch == 1 {
-            cell2.percentLable.text = "% dilution with \(cocktailIgredientsArray[indexPath.row].name)"
-            cell2.percentTextField.text = cocktailIgredientsArray[indexPath.row].dilutionPercentageTextField
-            cell2.backgroundColor = cocktail.teal
-            return cell2
-        }
-        
-        return cell1
-        
-    }
-    
-    
-
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-       return .delete
-       
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.beginUpdates()
-            cocktailIgredientsArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .right)
-            CalculateABV()
-            tableView.endUpdates()
-        }
         
     }
     
@@ -733,6 +554,7 @@ extension CocktailSpecsVC: AddIngredientToTableViewDelegate, AddNotesDelegate {
         }
         if nonDilutionIngredient == 15 {
             alert.showAlert(with: "That's too many ingredients!", message: "To add another, you'll have to delete one by swiping left.", on: self)
+           
             return
         } else {
             cocktailIngredient.name = name
@@ -747,18 +569,6 @@ extension CocktailSpecsVC: AddIngredientToTableViewDelegate, AddNotesDelegate {
         }
         
     }
-    func dismissAlert() {
-        alert.dismissAlert()
-        
-    }
-    func showAllert() {
-        let alertView = UIAlertController(title: "Oops!", message: "OK, Jeff Berry. That's too many ingredients. To add another ingredient, you'll have to delete one. Maybe rethink this build?🤔", preferredStyle: .actionSheet)
-        alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertView, animated: true)
-    }
-    
-    
-    
+  
 }
-
 
