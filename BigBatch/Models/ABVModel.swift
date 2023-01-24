@@ -48,33 +48,8 @@ struct ABVModel {
     func getABVs() -> [Double] {
         return [i1ABV,i2ABV,i3ABV,i4ABV,i5ABV,i6ABV,i7ABV,i8ABV,i9ABV,i10ABV,i11ABV,i12ABV,i13ABV,i14ABV,i15ABV,i16ABV]
     }
-    
-    
+
     func getPureAlcoholAmounts() -> [Double] {
         return [pureAlcoholVolume1,pureAlcoholVolume2,pureAlcoholVolume3,pureAlcoholVolume4,pureAlcoholVolume5,pureAlcoholVolume6,pureAlcoholVolume7,pureAlcoholVolume8,pureAlcoholVolume9,pureAlcoholVolume10,pureAlcoholVolume11,pureAlcoholVolume12,pureAlcoholVolume13,pureAlcoholVolume14,pureAlcoholVolume15,pureAlcoholVolume16]
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

@@ -184,6 +184,7 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         navigationController?.pushViewController(BatchedVC1(cocktail: cocktail), animated: true)
         
+        
     }
     
     @objc func CalculateABV() {

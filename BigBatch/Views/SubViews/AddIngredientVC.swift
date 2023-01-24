@@ -19,7 +19,6 @@ class AddIngredientVC: UIViewController {
     var addIngredientDelegate: AddIngredientToTableViewDelegate?
     
     var cocktail = CocktailModel()
-    
     let ingredientNameLabel = TypeLabel()
     let ingredientAmountLabel = TypeLabel()
     let ingredientABVLabel = TypeLabel()
@@ -41,9 +40,7 @@ class AddIngredientVC: UIViewController {
         
         segmentedControlWasChanged()
         ingredientNameTextField.becomeFirstResponder()
-        
-     
-       
+
     }
     override func viewWillAppear(_ animated: Bool) {
         refreshBackground()
@@ -71,19 +68,11 @@ class AddIngredientVC: UIViewController {
         
         addButton.setTitle("  Add to specs  ", for: .normal)
         addButton.backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 1.0)
-        
-        
-        
         ingredientAmountLabel.text = "Amount in ounces: "
         ingredientABVLabel.text = "ABV percentage: "
         dilutionTypeLabel.text = "Dilution percentage: "
-        
-
-       
         addButton.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
-        
-        
-        
+
         NSLayoutConstraint.activate([
             ingredientNameLabel.topAnchor.constraint(equalTo: view.topAnchor , constant: 120),
             ingredientNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
@@ -129,11 +118,7 @@ class AddIngredientVC: UIViewController {
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addButton.heightAnchor.constraint(equalToConstant: labelHeight),
             addButton.widthAnchor.constraint(equalToConstant: 150)
-        
-        
         ])
-        
-        
     }
     
     @objc func handleAddButton() {

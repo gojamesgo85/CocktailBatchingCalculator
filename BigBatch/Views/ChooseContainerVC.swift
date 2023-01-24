@@ -88,7 +88,7 @@ class ChooseContainerVC: UIViewController {
        
         splitBatchModelData.containerName = containerName
         splitBatchModelData.containerSize = containerSize
-        print(splitBatchModelData.ingredient1Name, splitBatchModelData.ingredient1Amount)
+        
         navigationController?.pushViewController(SplitBatchVC(splitBatchDataModel: splitBatchModelData), animated: true)
         
     }

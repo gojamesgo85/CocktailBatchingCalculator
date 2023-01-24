@@ -146,9 +146,9 @@
 			children = (
 				1AAB69552945428300779DC3 /* CocktailSpecsVC.swift */,
 				1A4D6326292D81DA00955459 /* SavedBatches.swift */,
-				1A2F14E7294A8B910020BA1A /* BatchedVC1.swift */,
 				1A2F14E9294AB6F20020BA1A /* ChooseContainerVC.swift */,
 				1A2F14EB294B10CF0020BA1A /* SplitBatchVC.swift */,
+				1A2F14E7294A8B910020BA1A /* BatchedVC1.swift */,
 				1A4D6333292E217700955459 /* SubViews */,
 			);
 			path = Views;
