@@ -201,6 +201,7 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
         containerTypeAndCountLabel.text = "Container Size: \(splitBatchVCModelData.containerName) || Count: \(totalContainerCount)"
         containerTypeAndCountLabel.textAlignment = .center
+        containerTypeAndCountLabel.textColor = .white
         
      
         
@@ -221,6 +222,7 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         remainderContainerBatchTableView.translatesAutoresizingMaskIntoConstraints = false
         remainderContainerBatchTableView.backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 0.0)
+
         NSLayoutConstraint.activate([
             containerTypeAndCountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
             containerTypeAndCountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -269,6 +271,7 @@ class SplitBatchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell.backgroundColor = colorArray[indexPath.row]
             if indexPath.row == splitBatchCellDataArray.count - 1 {
                 cell.backgroundColor = colorPalette.teal
+                
             }
             if totalContainerCount < 1.0 {
                 cell.amountLabel.text = "Insufficient Volume"

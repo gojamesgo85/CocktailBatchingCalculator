@@ -24,7 +24,7 @@ class BatchButton: UIButton {
         layer.cornerRadius = 10
         backgroundColor = colorPalette.green
         setTitle("Batch", for: .normal)
-        setTitleColor(.systemGray6, for: .normal)
+        setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
     }

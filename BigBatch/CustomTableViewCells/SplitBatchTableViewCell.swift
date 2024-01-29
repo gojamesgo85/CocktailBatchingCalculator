@@ -14,6 +14,7 @@ class SplitBatchTableViewCell: UITableViewCell {
         let ingredientLabel = TypeLabel()
         ingredientLabel.textAlignment = .center
         ingredientLabel.backgroundColor = .clear
+        ingredientLabel.textColor = .white
         return ingredientLabel
         
     }()
@@ -22,6 +23,7 @@ class SplitBatchTableViewCell: UITableViewCell {
         let amountField = TypeLabel()
         amountField.textAlignment = .center
         amountField.backgroundColor = .clear
+        amountField.textColor = .white
         return amountField
 
     }()

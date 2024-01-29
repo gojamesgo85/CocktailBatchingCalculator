@@ -69,6 +69,7 @@ class NotesVC: UIViewController, UITextFieldDelegate{
         textField.inputAccessoryView = toolBar()
         textField.font = .systemFont(ofSize: 16, weight: .regular)
         textField.contentMode = .scaleToFill
+        textField.textColor = .black
         textField.text = notesVCNotes
         NSLayoutConstraint.activate([
            

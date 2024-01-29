@@ -22,7 +22,7 @@ class CocktailIngredientNameTF: UITextField {
         layer.cornerRadius = 10
 //        layer.borderWidth = 1
 //        layer.borderColor = UIColor.systemGray4.cgColor
-        textColor = .label
+        textColor = .black
         tintColor = .label
         textAlignment = .center
         font = UIFont.preferredFont(forTextStyle: .headline)

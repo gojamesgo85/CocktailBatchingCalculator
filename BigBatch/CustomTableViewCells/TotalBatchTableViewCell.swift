@@ -55,7 +55,8 @@ class TotalBatchTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     let bottleNumberTextField: UITextField = {
         let bottleNumberTextField = UITextField()
-        bottleNumberTextField.tintColor = .blue
+        bottleNumberTextField.textColor = .black
+        bottleNumberTextField.backgroundColor = .white
         bottleNumberTextField.isEnabled = true
         bottleNumberTextField.textAlignment = .center
         bottleNumberTextField.keyboardType = .decimalPad
@@ -66,7 +67,8 @@ class TotalBatchTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     let remainingMlsTextField: UITextField = {
         let remainingMlsTextField = UITextField()
-        remainingMlsTextField.tintColor = .blue
+        remainingMlsTextField.textColor = .black
+        remainingMlsTextField.backgroundColor = .white
         remainingMlsTextField.isEnabled = true
         remainingMlsTextField.textAlignment = .center
         remainingMlsTextField.keyboardType = .decimalPad
