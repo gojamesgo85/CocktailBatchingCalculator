@@ -216,7 +216,8 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         mlDilutionAmouunt = Double(totalVolumePreDilution) * actualDilutionPercentageNumber
         literDilutionAmount = mlDilutionAmouunt / 1000
         
-        totalDilutionLabel.text = "Total Dilution (\(cocktail.dilutionType)) = \(mlDilutionAmouunt)ml"
+        totalDilutionLabel.text = "Total Dilution (\(cocktail.dilutionType)) = \(Int(mlDilutionAmouunt))ml"
+        totalDilutionLabel.textColor = .white
        
         let totalVolumeInMls = totalVolumePreDilution + Int(ceil(mlDilutionAmouunt))
         let totalVolumeInLiters = Double(totalVolumeInMls) / 1000.0
@@ -331,10 +332,13 @@ class BatchedVC1: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         view.addSubview(totalVolumeLabel)
         view.addSubview(tableViewLabel)
         tableViewLabel.text = "Ingredient Name:        Btl. Size:      # of btls/remaining mls: "
+        tableViewLabel.textColor = .white
         cocktailCountLabel.text = "Cocktail Count:"
+        cocktailCountLabel.textColor = .white
         
         totalDilutionLabel.textAlignment = .center
         totalVolumeLabel.text = "Total Volume in Liters:"
+        totalVolumeLabel.textColor = .white
         totalVolumeLabel.textAlignment = .center
         
         cocktailCountTextField.text = String(batchedInitialCocktailsNumber)

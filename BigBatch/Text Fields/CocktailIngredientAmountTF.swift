@@ -20,7 +20,7 @@ class CocktailIngredientAmountTF: UITextField {
     
     private func configure() {
         layer.cornerRadius = 10
-        textColor = .label
+        textColor = .black
         tintColor = .label
         textAlignment = .center
         font = UIFont.preferredFont(forTextStyle: .headline)

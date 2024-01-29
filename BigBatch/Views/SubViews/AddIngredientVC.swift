@@ -163,13 +163,13 @@ class AddIngredientVC: UIViewController {
             ingredientNameLabel.text = "Name: "
             ingredientAmountTextField.isEnabled = true
             ingredientAmountTextField.backgroundColor = .white
-            ingredientAmountLabel.textColor = .white
+            ingredientAmountLabel.textColor = .black
             
             dilutionPercentageTextField.isEnabled = false
             dilutionPercentageTextField.backgroundColor = .systemFill
             dilutionTypeLabel.textColor = .systemFill
             
-            ingredientABVLabel.textColor = .white
+            ingredientABVLabel.textColor = .black
             ingredientABVTextField.isEnabled = true
             ingredientABVTextField.backgroundColor = .white
             
@@ -180,15 +180,15 @@ class AddIngredientVC: UIViewController {
             ingredientNameTextField.placeholder = "Usually Water"
             ingredientAmountTextField.isEnabled = false
             ingredientAmountTextField.backgroundColor = .systemFill
-            ingredientAmountLabel.textColor = .systemFill
+            ingredientAmountLabel.textColor = .black
             ingredientNameLabel.text = "Type: "
             dilutionPercentageTextField.isEnabled = true
             dilutionPercentageTextField.backgroundColor = .white
-            dilutionTypeLabel.textColor = .white
+            dilutionTypeLabel.textColor = .black
             
-            ingredientABVLabel.textColor = .systemFill
+            ingredientABVLabel.textColor = .black
             ingredientABVTextField.isEnabled = false
-            ingredientABVTextField.backgroundColor = .systemFill
+            ingredientABVTextField.backgroundColor = .white
             
         }
         

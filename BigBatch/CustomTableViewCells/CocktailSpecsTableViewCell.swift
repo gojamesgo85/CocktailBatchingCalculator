@@ -29,7 +29,8 @@ class CocktailSpecsTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     let ozTextField: UITextField = {
         let textField = UITextField()
-        textField.tintColor = .blue
+        textField.backgroundColor = .white
+        textField.textColor = .black
         textField.isEnabled = true
         textField.textAlignment = .center
         return textField
@@ -39,7 +40,7 @@ class CocktailSpecsTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     let specsIngredientLabel: UILabel = {
         let textField = TypeLabel()
-        textField.tintColor = .blue
+        textField.textColor = .white
         textField.isEnabled = true
         textField.textAlignment = .left
         textField.minimumScaleFactor = 12
@@ -51,7 +52,8 @@ class CocktailSpecsTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     let abvTextField: UITextField = {
         let textField = UITextField()
-        textField.tintColor = .blue
+        textField.backgroundColor = .white
+        textField.textColor = .black
         textField.isEnabled = true
         textField.textAlignment = .center
         return textField

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
    
     let alert = Alert()
@@ -391,8 +392,10 @@ class CocktailSpecsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         numberOfCocktailsLabel.backgroundColor = .clear
         numberOfCocktailsTextField.textAlignment = .center
         numberOfCocktailsTextField.backgroundColor = .white
+        numberOfCocktailsTextField.attributedPlaceholder = NSAttributedString(string: "#", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         addAnIngredientButton.setTitle("➕ Ingredient", for: .normal)
-        cocktailNameField.placeholder = "Enter a cocktail name."
+        //cocktailNameField.placeholder = "Enter a cocktail name."
+        cocktailNameField.attributedPlaceholder = NSAttributedString(string: "Enter a cocktail name.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         notesButton.setTitle("➕ Notes", for: .normal)
         addAnIngredientButton.addTarget(self, action: #selector(pushModalIngredients), for: .touchUpInside)
         cocktailNameField.inputAccessoryView = toolBar()
